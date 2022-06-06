@@ -1,0 +1,28 @@
+<div class="container" id="contenedor">
+  <div class="row">
+    <div class="col">
+      <mat-card id="consulta">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+      <mat-card-title>Agenda</mat-card-title>
+    </mat-card>
+    </div>
+    <div class="col">
+      <mat-card id="paciente">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">accessibility</mat-icon>
+        <mat-card-title [routerLink]="['/pacientes']">Agregar Pacientes</mat-card-title>
+      </mat-card>
+    </div>
+    <div class="col">
+      <mat-card id="ficha">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">assignment</mat-icon>
+        <mat-card-title [routerLink]="['/ficha']">Paciente</mat-card-title>
+      </mat-card>
+    </div>
+    <div class="col">
+      <mat-card id="doctor">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">supervisor_account</mat-icon>
+        <mat-card-title>Doctores</mat-card-title>
+      </mat-card>
+    </div>
+  </div>
+</div>

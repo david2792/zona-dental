@@ -1,0 +1,30 @@
+mat-icon{
+  font-size: 50px;
+
+}
+mat-icon{
+  color: #eef0ea;
+}
+#consulta{
+  background-color: #97D158;
+  border-radius: 10px;
+}
+#paciente{
+  background-color: #949BA3;
+  border-radius: 10px;
+}
+#doctor{
+  background-color: rgba(10, 9, 9, 0.725);
+  border-radius: 10px;
+}
+#ficha{
+  background-color: rgba(7, 27, 105, 0.864);
+  border-radius: 10px;
+}
+#contenedor{
+  margin: auto;
+  padding-top: 10px;
+}
+mat-card-title{
+  color: aliceblue;
+}

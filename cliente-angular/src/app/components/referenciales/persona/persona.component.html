@@ -1,0 +1,205 @@
+<div class="container">
+  <form [formGroup]="datosPeronas" autocomplete="off">
+      <mat-card id="co" style="border-radius: 20px;">
+        <mat-card-title id="acciones" style="border-radius: 10px; padding: 10px; background: #343A40; color: white;">Registro de Personas</mat-card-title>
+        <mat-card-subtitle>Permite ingresar los datos básicos del pacientes antes de la consulta</mat-card-subtitle>
+        <mat-card-content>
+        <div class="row">
+          <div class="col-6">
+            <!-- primer campo -->
+            <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Nombre Completo</mat-label>
+              <input
+              formControlName="nombre"
+              matInput placeholder="Datos del Paciente">
+            </mat-form-field>
+            <div *ngIf="this.datosPeronas.get('nombre') && this.datosPeronas.get('nombre')?.invalid && this.datosPeronas.get('nombre')?.touched" class="alert alert-danger" >
+              Ingrese el nombre
+            </div>
+            <!-- fin -->
+          </div>
+          <div class="col-6">
+               <!-- segundo campo -->
+               <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Apellido Completo</mat-label>
+                <input
+                formControlName="apellido"
+                matInput placeholder="Datos del Paciente">
+              </mat-form-field>
+              <!-- fin -->
+              <div *ngIf="this.datosPeronas.get('apellido') && this.datosPeronas.get('apellido')?.invalid && this.datosPeronas.get('apellido')?.touched" class="alert alert-danger" >
+                Ingrese el nombre
+              </div>
+          </div>
+          <div class="col-3">
+          <!-- segundo campo -->
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Numero de C.I</mat-label>
+            <input
+            formControlName="cedula"
+            matInput placeholder="Datos del Paciente">
+          </mat-form-field>
+          <!-- fin -->
+          <div *ngIf="this.datosPeronas.get('cedula') && this.datosPeronas.get('cedula')?.invalid && this.datosPeronas.get('cedula')?.touched" class="alert alert-danger" >
+            Ingrese el nombre
+          </div>
+          </div>
+          <div class="col-3">
+            <!-- segundo campo -->
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Numero RUC</mat-label>
+              <input
+              formControlName="ruc"
+              matInput placeholder="Datos del Paciente">
+            </mat-form-field>
+            <!-- fin -->
+            <div *ngIf="this.datosPeronas.get('ruc') && this.datosPeronas.get('ruc')?.invalid && this.datosPeronas.get('ruc')?.touched" class="alert alert-danger" >
+              Ingrese el nombre
+            </div>
+            </div>
+          <div class="col-6">
+            <!-- segundo campo -->
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Fecha de Nacimiento</mat-label>
+              <input
+              formControlName="fecha"
+              type="date" matInput placeholder="Datos del Paciente">
+            </mat-form-field>
+            <!-- fin -->
+          </div>
+          <div class="col-6">
+            <!-- quinto campo -->
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Correo Electronico</mat-label>
+              <input
+              formControlName="correo"
+              type="email" matInput  placeholder="Ex. pat@example.com">
+            </mat-form-field>
+            <!-- fin -->
+          </div>
+          <div class="col-6">
+            <!-- sexto campo -->
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Telefono</mat-label>
+              <span matPrefix>+595 &nbsp;</span>
+              <input
+              formControlName="telefono"
+              type="tel" matInput placeholder="991-555-123">
+            </mat-form-field>
+            <!-- fin -->
+            <div *ngIf="this.datosPeronas.get('telefono') && this.datosPeronas.get('telefono')?.invalid && this.datosPeronas.get('telefono')?.touched" class="alert alert-danger" >
+              Ingrese el nombre
+            </div>
+          </div>
+          <div class="col-4">
+               <!-- sexto campo -->
+               <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Telefono Whatsapp</mat-label>
+                <span matPrefix>+595 &nbsp;</span>
+                <input
+                formControlName="whatsapp"
+                type="tel" matInput placeholder="991-555-123">
+              </mat-form-field>
+              <!-- fin -->
+              <div *ngIf="this.datosPeronas.get('whatsapp') && this.datosPeronas.get('whatsapp')?.invalid && this.datosPeronas.get('whatsapp')?.touched" class="alert alert-danger" >
+                Ingrese el nombre
+              </div>
+          </div>
+          <div class="col-3">
+            <!-- sexto campo -->
+            <mat-form-field class="example-full-width" appearance="outline">
+              <input type="text"
+              placeholder="Ciudad"
+              aria-label="Number"
+              matInput
+              [formControl]="datosciudad"
+              [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+         <mat-option *ngFor="let option of filCiudad | async" [value]="option.nombre">
+           {{option.nombre}}
+         </mat-option>
+       </mat-autocomplete>
+           </mat-form-field>
+           <!-- fin -->
+
+       </div>
+       <div class="col-4">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Direccion</mat-label>
+          <input
+          formControlName="direccion"
+          matInput placeholder="Direccion+">
+        </mat-form-field>
+        <div *ngIf="this.datosPeronas.get('direccion') && this.datosPeronas.get('direccion')?.invalid && this.datosPeronas.get('direccion')?.touched" class="alert alert-danger" >
+          Ingrese el nombre
+        </div>
+      </div>
+       <div class="col-3">
+       <!-- sexto campo -->
+            <mat-form-field class="example-full-width" appearance="outline">
+              <input type="text"
+              placeholder="Profesion"
+              matInput
+              [formControl]="datosprofesion"
+              [matAutocomplete]="profesion">
+            <mat-autocomplete #profesion="matAutocomplete">
+        <mat-option *ngFor="let option of filtroProfesiones | async" [value]="option.descripcion">
+          {{option.descripcion}}
+        </mat-option>
+      </mat-autocomplete>
+          </mat-form-field>
+          <!-- fin -->
+       </div>
+       <div class="col-3">
+        <!-- sexto campo -->
+             <mat-form-field class="example-full-width" appearance="outline">
+               <input type="text"
+               placeholder="Genero"
+               matInput
+               [formControl]="datosgenero"
+               [matAutocomplete]="genero">
+             <mat-autocomplete #genero="matAutocomplete">
+         <mat-option *ngFor="let option of filtroGenero | async" [value]="option.descripcion">
+           {{option.descripcion}}
+         </mat-option>
+       </mat-autocomplete>
+           </mat-form-field>
+           <!-- fin -->
+        </div>
+        <div class="col-3">
+          <!-- sexto campo -->
+               <mat-form-field class="example-full-width" appearance="outline">
+                 <input type="text"
+                 placeholder="Estado"
+                 matInput
+                 [formControl]="datosestado"
+                 [matAutocomplete]="estado">
+               <mat-autocomplete #estado="matAutocomplete">
+           <mat-option *ngFor="let option of filtroEstados | async" [value]="option.descripcion">
+             {{option.descripcion}}
+           </mat-option>
+         </mat-autocomplete>
+             </mat-form-field>
+             <!-- fin -->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" id="acciones">
+            <button mat-raised-button  [disabled]="datosPeronas.invalid" (click)="crearPersona()" style=" background: rgb(143, 209, 130); color: white;">Guardar</button>
+            <button mat-raised-button style=" background: rgb(9, 9, 9); color: white;">Modificar</button>
+            <button mat-raised-button style=" background: #949BA3; color: white;">Cancerlar</button>
+            <button mat-raised-button [routerLink]="['/principal']" style=" background: #042953; color: white;">Volver</button>
+
+          </div>
+        </div>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions> -->
+      </mat-card>
+      <br>
+
+    </form>
+</div>
+

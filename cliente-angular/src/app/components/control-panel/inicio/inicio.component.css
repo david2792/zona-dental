@@ -1,0 +1,49 @@
+
+
+
+mat-sidenav-container
+{
+  height: calc(205vh - 115vh);
+}
+
+mat-sidenav
+{
+ width: 200px;
+ background-color: aquamarine;
+}
+h4
+{
+ color: brown;
+ text-align: center;
+ font-size: 40px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+span{
+  color: aliceblue;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+mat-toolbar{
+  background-color: #343A40;
+
+}
+#login{
+  background: rgb(40, 158, 16);
+  color: aliceblue;
+  font-size: 20px;
+}
+#titulo{
+  margin-top: 0px;
+  margin-left: 20px;
+}
+#fondo{
+  /* background: #ced2d5; */
+  background-image: url('../../../../assets/img/fondo.jpeg');
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+

@@ -1,0 +1,40 @@
+mat-sidenav-container
+{
+  height: calc(205vh - 115vh);
+}
+
+mat-sidenav
+{
+ width: 200px;
+ background-color: aquamarine;
+}
+h4
+{
+ color: brown;
+ text-align: center;
+ font-size: 40px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+span{
+  color: aliceblue;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+mat-toolbar{
+  background-color: #121F3D;
+}
+#login{
+  background: rgb(40, 158, 16);
+  color: aliceblue;
+  font-size: 20px;
+}
+
+*{
+
+}
+
+#fondo{
+  background: #0d264b;
+}

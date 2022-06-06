@@ -1,0 +1,91 @@
+<div class="container">
+  <form>
+      <mat-card >
+        <mat-card-title style="border-radius: 10px; padding: 10px; background: #343A40; color: white;">Registro de Ancedentes Medicos</mat-card-title>
+        <mat-card-subtitle>Permite ingresar los datos básicos de las enfermedades de base</mat-card-subtitle>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-4" >
+              <!-- primer campo -->
+              <mat-form-field id="fo" class="example-full-width" appearance="fill">
+                <mat-label>CI</mat-label>
+                <input matInput placeholder="Datos del Paciente">
+              </mat-form-field>
+              <!-- fin -->
+            </div>
+            <div class="col-8">
+               <!-- primer campo -->
+               <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Datos del Paciente</mat-label>
+                <input matInput placeholder="Datos del Paciente">
+              </mat-form-field>
+              <!-- fin -->
+            </div>
+            <div class="col-4">
+              <!-- primer campo -->
+              <mat-form-field class="example-full-width" appearance="fill">
+               <mat-label>Afecciones Sistemicas</mat-label>
+               <input matInput placeholder="Afecciones">
+             </mat-form-field>
+             <!-- fin -->
+           </div>
+           <div class="col-8">
+            <!-- primer campo -->
+            <mat-form-field class="example-full-width" appearance="fill">
+             <mat-label>Medicacion Actual</mat-label>
+             <input matInput placeholder="Enfermedad">
+           </mat-form-field>
+           <!-- fin -->
+         </div>
+         <div class="col-12">
+            <!-- tabla -->
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+              <!-- ID Column -->
+              <ng-container matColumnDef="codigo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.codigo}} </td>
+              </ng-container>
+
+              <!-- Progress Column -->
+              <ng-container matColumnDef="enfermedad">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+                <td mat-cell *matCellDef="let row"> {{row.enfermedad}}% </td>
+              </ng-container>
+
+              <!-- Name Column -->
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+              <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+
+              </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+          </div>
+         </div>
+         <div class="col m-2">
+          <mat-form-field style="background-color: #ffff00; height: 100px;"  class="example-full-width" appearance="fill">
+            <mat-label>Observaciones</mat-label>
+            <textarea  matInput placeholder="Ingrese las observaciones"></textarea>
+          </mat-form-field>
+         </div>
+          </div>
+
+        </mat-card-content>
+        <div class="row">
+          <div class="col" id="acciones">
+            <button mat-raised-button style=" background: rgb(143, 209, 130); color: white;">Guardar</button>
+            <button mat-raised-button style=" background: rgb(9, 9, 9); color: white;">Modificar</button>
+            <button mat-raised-button style=" background: #949BA3; color: white;">Cancerlar</button>
+            <button mat-raised-button [routerLink]="['/principal']" style=" background: #042953; color: white;">Volver</button>
+          </div>
+        </div>
+      </mat-card>
+    </form>
+</div>

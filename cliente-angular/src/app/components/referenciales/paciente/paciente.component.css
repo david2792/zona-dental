@@ -1,0 +1,56 @@
+.mat-form-field{
+  height: auto;
+  width: 100%;
+  padding: 1px;
+}
+input {
+ font-size: 20px;
+}
+button{
+  margin: 10px;
+}
+#acciones{
+  display: flex;
+  justify-content: center;
+
+}
+#Buscar{
+  display: flex;
+  background: rgb(40, 158, 16);
+  font-size: 18px;
+  justify-content: center;
+  line-height: 50px;
+  height: 70%;
+  width: 50%;
+  margin-top: 3px;
+  padding: 0px;
+}
+
+#botones{
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  padding-top: 20px;
+}
+mat-card{
+  border: 0px solid rgb(23, 2, 2);
+}
+
+.mat-raised-button
+{
+  height: 50px;
+  width: 150px;
+  border-radius: 20px;
+  padding: auto;
+}
+@media  (max-width: 576px) {
+  .mat-raised-button
+  {
+    height: 40px;
+    width: 100px;
+    border-radius: 20px;
+    padding: auto;
+  }
+ }

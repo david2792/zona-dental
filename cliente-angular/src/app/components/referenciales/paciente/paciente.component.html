@@ -1,0 +1,148 @@
+<div class="container">
+  <form>
+      <mat-card id="co" style="border-radius: 20px;">
+        <mat-card-title id="acciones" style="border-radius: 10px; padding: 10px; background: #343A40; color: white;">Registro de Pacientes</mat-card-title>
+        <mat-card-subtitle>Permite ingresar los datos básicos del pacientes antes de la consulta</mat-card-subtitle>
+        <mat-card-content>
+        <div class="row">
+          <div class="col-6">
+            <!-- primer campo -->
+            <mat-form-field class="example-full-width" appearance="fill" >
+              <mat-label>Nombre Completo</mat-label>
+              <input matInput placeholder="Datos del Paciente">
+            </mat-form-field>
+            <!-- fin -->
+          </div>
+          <div class="col-6">
+               <!-- segundo campo -->
+               <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Apellido Completo</mat-label>
+                <input matInput placeholder="Datos del Paciente">
+              </mat-form-field>
+              <!-- fin -->
+          </div>
+          <div class="col-3">
+          <!-- segundo campo -->
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Numero de C.I</mat-label>
+            <input matInput placeholder="Datos del Paciente">
+          </mat-form-field>
+          <!-- fin -->
+          </div>
+          <div class="col-3">
+            <!-- segundo campo -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Numero RUC</mat-label>
+              <input matInput placeholder="Datos del Paciente">
+            </mat-form-field>
+            <!-- fin -->
+            </div>
+          <div class="col-6">
+            <!-- segundo campo -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Fecha de Nacimiento</mat-label>
+              <input type="date" matInput placeholder="Datos del Paciente">
+            </mat-form-field>
+            <!-- fin -->
+          </div>
+          <div class="col-6">
+            <!-- quinto campo -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Correo Electronico</mat-label>
+              <input type="email" matInput  placeholder="Ex. pat@example.com">
+            </mat-form-field>
+            <!-- fin -->
+          </div>
+          <div class="col-6">
+            <!-- sexto campo -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Telefono</mat-label>
+              <span matPrefix>+595 &nbsp;</span>
+              <input type="tel" matInput placeholder="991-555-123">
+            </mat-form-field>
+            <!-- fin -->
+          </div>
+          <div class="col-4">
+               <!-- sexto campo -->
+               <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Telefono Whatsapp</mat-label>
+                <span matPrefix>+595 &nbsp;</span>
+                <input type="tel" matInput placeholder="991-555-123">
+              </mat-form-field>
+              <!-- fin -->
+          </div>
+          <div class="col-3">
+            <!-- sexto campo -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input type="text"
+              placeholder="Ciudad"
+              aria-label="Number"
+              matInput
+              [formControl]="control"
+              [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+         <mat-option *ngFor="let option of filCiudad | async" [value]="option.nombre">
+           {{option.nombre}}
+         </mat-option>
+       </mat-autocomplete>
+           </mat-form-field>
+           <!-- fin -->
+       </div>
+       <div class="col-3">
+       <!-- sexto campo -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input type="text"
+              placeholder="Profesion"
+              aria-label="Number"
+              matInput
+              [formControl]="control"
+              [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filCiudad | async" [value]="option.nombre">
+          {{option.nombre}}
+        </mat-option>
+      </mat-autocomplete>
+          </mat-form-field>
+          <!-- fin -->
+       </div>
+
+      <div class="col-3">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Grupo Sanguineo</mat-label>
+          <input matInput placeholder="A+">
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Odontologo Tratante</mat-label>
+          <input matInput placeholder="Doctor">
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <!-- sexto campo -->
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Barrio</mat-label>
+          <input type="tel" matInput placeholder="Ingrese el barrio">
+        </mat-form-field>
+        <!-- fin -->
+      </div>
+        </div>
+        <div class="row">
+          <div class="col" id="acciones">
+            <button mat-raised-button style=" background: rgb(143, 209, 130); color: white;">Guardar</button>
+            <button mat-raised-button style=" background: rgb(9, 9, 9); color: white;">Modificar</button>
+            <button mat-raised-button style=" background: #949BA3; color: white;">Cancerlar</button>
+            <button mat-raised-button [routerLink]="['/principal']" style=" background: #042953; color: white;">Volver</button>
+
+          </div>
+        </div>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions> -->
+      </mat-card>
+      <br>
+
+    </form>
+</div>
