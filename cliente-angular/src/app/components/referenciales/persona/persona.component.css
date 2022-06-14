@@ -56,7 +56,15 @@ mat-card{
  }
  button:disabled,
  button[disabled]{
-   
+
    background-color: #942727;
    color: #666666;
+ }
+
+ mat-toolbar{
+  background-color: #666666;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  color: aliceblue;
  }

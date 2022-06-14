@@ -12,7 +12,12 @@ button{
 #acciones{
   display: flex;
   justify-content: center;
+}
+button:disabled,
+button[disabled]{
 
+  background-color: #942727;
+  color: #666666;
 }
 #Buscar{
   display: flex;

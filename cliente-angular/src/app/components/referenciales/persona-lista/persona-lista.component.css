@@ -1,0 +1,15 @@
+.mat-form-field{
+  height: auto;
+  width: 100%;
+  padding: 1px;
+}
+table
+{
+  height: auto;
+  width: 100%;
+  padding: 1px;
+}
+
+button{
+  margin: 10px;
+}

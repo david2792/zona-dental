@@ -3,35 +3,50 @@ import { Injectable } from '@angular/core';
 import { Personas } from 'src/app/modelo/referenciales-personas/Personas';
 
 import {Pacientes} from '../../modelo/referenciales-personas/Pacientes'
+import { AccesoService } from '../acceso.service';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class PacientesService {
+  valor:any='valor'
 
+  // API_URI = 'http://localhost:3000/api'
 
-  API_URI = 'http://localhost:3000/api'
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private rutas:AccesoService) {}
       consutlaCiudad(){
-      return this.http.get(`${this.API_URI}/ciudad/listar`)
+      return this.http.get(`${this.rutas.API_URI}/ciudad/listar`)
     }
-    guadarPaciente(pacientes:Pacientes){
-      return this.http.post(`${this.API_URI}/guardar`,pacientes)
+    guadarPaciente(paciente:Pacientes){
+      return this.http.post(`${this.rutas.API_URI}/persona/crearpaciente`,paciente)
     }
 // referenciales
     consultaGenero(){
-      return this.http.get(`${this.API_URI}/genero/listar`)
+      return this.http.get(`${this.rutas.API_URI}/genero/listar`)
     }
     consultaProfesion(){
-      return this.http.get(`${this.API_URI}/profesion/listar`)
+      return this.http.get(`${this.rutas.API_URI}/profesion/listar`)
     }
     consultarEstadoCivil(){
-      return this.http.get(`${this.API_URI}/estadocivil/listar`)
+      return this.http.get(`${this.rutas.API_URI}/estadocivil/listar`)
     }
 
     guardarPersonas(paciente:Personas){
-      return this.http.post(`${this.API_URI}/persona/crear`,paciente);
+      return this.http.post(`${this.rutas.API_URI}/persona/crear`,paciente);
     }
+    getPersonas(){
+      return this.http.get(`${this.rutas.API_URI}/persona/listar`);
+    }
+
+
+
+}
+
+class foo{
+ datos:''
+  getdatos(datos:Personas){
+    return datos
+  }
 
 }

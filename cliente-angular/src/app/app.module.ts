@@ -14,7 +14,9 @@ import {MatIconModule} from '@angular/material/icon';
 import { ControlPanelModule } from './components/control-panel/control-panel.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ReferencialesModule } from './components/referenciales/referenciales.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './servicios/login/token-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -33,7 +35,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [
+    AuthGuard,{
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

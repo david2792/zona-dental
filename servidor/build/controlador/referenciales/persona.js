@@ -33,14 +33,14 @@ class PersonaControl {
         return __awaiter(this, void 0, void 0, function* () {
             const conn = yield (0, conexionBD_1.connect)();
             try {
-                const categoria = yield conn.query('SELECT * FROM categorias');
-                if (categoria.length > 0) {
+                const persona = yield conn.query('SELECT * FROM vpersonas');
+                if (persona.length > 0) {
                     conn.end();
-                    return res.json(categoria);
+                    return res.json(persona);
                 }
             }
             catch (error) {
-                res.status(404).json({ text: 'las categorias no existe' });
+                res.status(404).json({ text: 'las personas no existe' });
                 conn.end();
             }
         });
@@ -51,7 +51,7 @@ class PersonaControl {
             try {
                 const datos = req.body;
                 console.log(datos);
-                const codigo = yield conn.query('SELECT MAX(idpersonas)+1 AS idpersonas FROM personas');
+                const codigo = yield conn.query('SELECT MAX(idpersonas) AS idpersonas FROM personas');
                 JSON.stringify(codigo);
                 const codigopersona = codigo[0].idpersonas;
                 const idpersonas = codigopersona + 1;

@@ -14,11 +14,21 @@ import { RouterModule, Routes } from '@angular/router';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { PersonaComponent } from './persona/persona.component';
+import {MatIconModule} from '@angular/material/icon';
+import { BuscarPersonaComponent } from './buscador/buscar-persona/buscar-persona.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { PersonaListaComponent } from './persona-lista/persona-lista.component';
+
+
 @NgModule({
   declarations: [
     PacienteComponent,
     AntecendenteMedicoComponent,
-    PersonaComponent
+    PersonaComponent,
+    BuscarPersonaComponent,
+    PersonaListaComponent
   ],
   imports: [
     CommonModule,
@@ -29,12 +39,16 @@ import { PersonaComponent } from './persona/persona.component';
     MatDialogModule,
     MatAutocompleteModule,
     HttpClientModule,
-    MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
     RouterModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatToolbarModule
+
   ]
 })
 export class ReferencialesModule { }

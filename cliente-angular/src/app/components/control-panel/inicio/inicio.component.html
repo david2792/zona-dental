@@ -3,16 +3,29 @@
       <button mat-button (click)="opened=!opened"> <mat-icon>menu</mat-icon></button>
       <span id="titulo">Sistema Smart 1.0</span>
       <span class="example-spacer"></span>
-      <button mat-raised-button id="login" [routerLink]="['/login']">Salir</button>
+      <button mat-raised-button id="login" (click)="salirLogin()">Salir</button>
+
   </mat-toolbar-row>
   </mat-toolbar>
   <mat-sidenav-container>
     <mat-sidenav [(opened)]="opened" mode="side">
-      Start
+
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Redial</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voice mail</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+      
     </mat-sidenav>
     <mat-sidenav-content id="fondo" >
       <router-outlet>
-
       </router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

@@ -23,7 +23,7 @@ class PacienteControl
     const conn = await connect();
   try 
   {
-    const categoria =  await conn.query('SELECT * FROM categorias');
+    const categoria =  await conn.query('SELECT * FROM pacientes');
     if(categoria.length > 0)
     {
       conn.end()
@@ -39,26 +39,30 @@ class PacienteControl
 
   public async crear(req: Request, res: Response): Promise<void> 
   {
-    // const conn = await connect();
-    // try {
-    //   console.log("servidor")
-    //   const codigo = await conn.query('SELECT MAX(CodigoCategoria)+1 AS CodigoCategoria FROM categorias')
-    //   JSON.stringify(codigo);
-    //   const CodigoCategoria = codigo[0].CodigoCategoria;
-    //   console.log("servidor"+CodigoCategoria)
-    //   let datos=req.body.categorias;
-    //   const Descripcion = datos.Descripcion.toUpperCase();;
-    //   const values = { CodigoCategoria, Descripcion };
-    //   console.log(values)
-    //   await conn.query('INSERT INTO categorias  SET ?', values);
-    //   conn.end()
-    //   res.status(200).json({ message: "la categoria fue guardada" });
-    // } catch (error) {
-    //   res.status(404).json({text:'error al guardar los datos'});
-    //   conn.end()
-    // }
-
-    console.log(req.body)
+    const conn = await connect();
+    try {
+      const codigo = await conn.query('SELECT MAX(idpaciente) AS idpaciente FROM paciente')
+      JSON.stringify(codigo);
+      const   codigopersona = codigo[0].idpaciente;
+      const idpaciente = codigopersona+1
+      const idpersonas = req.body.idpersonas
+      console.log(idpaciente)
+      const gruposanguineo = req.body.grupo
+      const telefono_emergencia = req.body.telefono
+      const odontologo = req.body.odontologo
+      const tutor_legal = req.body.legal
+  
+      const valores = {
+        idpersonas,idpaciente,gruposanguineo,telefono_emergencia,odontologo,tutor_legal
+      }
+      await conn.query('INSERT INTO paciente  SET ?', valores);
+      conn.end()
+      res.status(200).json({ message: "el paciente fue guardado" });
+    } catch (error) {
+      console.log(error)
+      res.status(404).json({text:'error al guardar los datos'});
+      conn.end()
+    }
     
   }
 

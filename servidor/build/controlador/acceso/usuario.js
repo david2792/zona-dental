@@ -24,24 +24,25 @@ class UsuarioControlador {
             var SECRET = "SECRETO_PARA_ENCRIPTACION";
             const pool = yield (0, conexionBD_1.connect)();
             try {
-                const usuario = yield pool.query('SELECT * FROM usuarios');
-                JSON.stringify(usuario);
-                console.log(usuario);
-                const cod = usuario[0].CodigoUsuario;
-                const usuarios = usuario[0].Usuario;
-                const clave = usuario[0].Clave;
-                const descripcion = usuario[0].descripcion;
-                const nombre = usuario[0].Nombre + " " + usuario[0].Apellido;
-                const value = { usuarios, clave };
+                const datosusuarios = yield pool.query('SELECT * FROM vusuario');
+                JSON.stringify(datosusuarios);
+                console.log(datosusuarios);
+                const cod = datosusuarios[0].idusuarios;
+                const usuario = datosusuarios[0].usuario;
+                const clave = datosusuarios[0].contraseña;
+                const descripcion = datosusuarios[0].descripcion;
+                const nombre = datosusuarios[0].nombre + " " + datosusuarios[0].apellido;
+                const value = { usuario, clave };
                 const users = req.body.usuario;
-                const pass = req.body.password;
-                if (users == usuarios && pass == clave) {
+                const pass = req.body.contraseña;
+                console.log(pass);
+                if (users == usuario && pass == clave) {
                     var tokenData = {
                         codigo: cod,
                         users: users,
                         pass: pass,
                         nombre: nombre,
-                        descripcion: "ADMINISTRADOR"
+                        descripcion: descripcion
                         // ANY DATA
                     };
                     console.log("bienvenido");

@@ -23,16 +23,16 @@ class PersonaControl
     const conn = await connect();
   try 
   {
-    const categoria =  await conn.query('SELECT * FROM categorias');
-    if(categoria.length > 0)
+    const persona =  await conn.query('SELECT * FROM vpersonas');
+    if(persona.length > 0)
     {
       conn.end()
-      return res.json(categoria);
+      return res.json(persona);
     }
   } 
   catch (error) 
   {
-    res.status(404).json({text:'las categorias no existe'});
+    res.status(404).json({text:'las personas no existe'});
     conn.end()
   }
   } 
@@ -43,7 +43,7 @@ class PersonaControl
     try {
       const datos = req.body
       console.log(datos)
-      const codigo = await conn.query('SELECT MAX(idpersonas)+1 AS idpersonas FROM personas')
+      const codigo = await conn.query('SELECT MAX(idpersonas) AS idpersonas FROM personas')
       JSON.stringify(codigo);
       const codigopersona = codigo[0].idpersonas;
       const idpersonas = codigopersona+1

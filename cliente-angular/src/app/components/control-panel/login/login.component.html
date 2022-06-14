@@ -1,16 +1,16 @@
 <section id="wrapper" class="login-register login-sidebar" style="background-image:url(../../../../assets/img/background/login-register.jpg);">
   <div class="login-box card">
       <div class="card-body">
-          <form class="form-horizontal form-material" id="loginform" action="index.html">
+          <form class="form-horizontal form-material"  [formGroup]="usuarioFormulario">
               <a href="javascript:void(0)" class="text-center db"><br/><img id="logo" src="../../../../assets/img/fondo.jpeg" alt="Home" /></a>
               <div class="form-group m-t-40">
                   <div class="col-xs-12">
-                      <input class="form-control" type="text" required="" placeholder="Usuario">
+                      <input class="form-control" type="text" required="" placeholder="Usuario" formControlName="usuario">
                   </div>
               </div>
               <div class="form-group">
                   <div class="col-xs-12">
-                      <input class="form-control" type="password" required="" placeholder="Password">
+                      <input class="form-control" type="password" required="" placeholder="Password" formControlName="contraseña">
                   </div>
               </div>
               <div class="form-group row">
@@ -22,7 +22,7 @@
               </div>
               <div class="form-group text-center m-t-20">
                   <div class="col-xs-12">
-                      <button id="ingresar" class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" [routerLink]="['/principal']">Ingresar</button>
+                      <button id="ingresar" class="btn btn-info btn-lg btn-block text-uppercase btn-rounded" (click)="login()">Ingresar</button>
                   </div>
               </div>
               <div class="row">

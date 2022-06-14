@@ -74,6 +74,9 @@ export class PersonaComponent implements OnInit {
   profesion:'',
 }
 
+mensaje=''
+alerta=false
+
   constructor( private pacienteServicio:PacientesService, private formBuilder: FormBuilder) {
 
       this.datosPeronas = new FormGroup({
@@ -101,7 +104,14 @@ export class PersonaComponent implements OnInit {
     this.BuscarProfesion()
     this.BuscarEstado()
   }
-
+limpiar(){
+  this.datosgenero.setValue('')
+  this.datosciudad.setValue('')
+  this.datosestado.setValue('')
+  this.datosprofesion.setValue('')
+  this.alerta=false
+  this.mensaje=''
+}
  crearPersona(){
    this.datos = this.datosPeronas.value
    this.datosPeronas.get('idciudad')?.setValue(this.datosciudad.value)
@@ -110,12 +120,27 @@ export class PersonaComponent implements OnInit {
    this.datosPeronas.get('idestado')?.setValue(this.datosestado.value)
    this.personas = this.datosPeronas.value
    console.log(this.personas)
-   this.pacienteServicio.guardarPersonas(this.personas).subscribe(
-      res=>{
-        console.log(res)
-      }
-   )
+   const confirmacion = window.confirm("Desea Guardar el Paciente?");
+    if(confirmacion==true){
+      this.pacienteServicio.guardarPersonas(this.personas).subscribe(
+        res=>{
+          console.log(res)
+          this.alerta=true;
+          this.mensaje= "REGISRO GUARDADO"
+        },
+        err=>{
+          console.log(err)
+          this.alerta=true
+          this.mensaje="OCURRIO UN ERROR"
+
+        }
+     )
+     this.datosPeronas.reset();
+    this.limpiar()
+    }
  }
+
+
 
   BuscarCiudad(){
     this.pacienteServicio.consutlaCiudad().subscribe(

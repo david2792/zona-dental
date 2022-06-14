@@ -10,6 +10,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { RouterModule, Routes } from '@angular/router';
 import { PrincipalComponent } from './principal/principal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
 @NgModule({
   declarations: [
     InicioComponent,
@@ -24,7 +26,10 @@ import { PrincipalComponent } from './principal/principal.component';
     MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatMenuModule
 
   ],
   exports:[InicioComponent]

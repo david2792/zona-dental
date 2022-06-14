@@ -7,15 +7,23 @@
     </mat-card>
     </div>
     <div class="col">
-      <mat-card id="paciente">
+      <mat-card id="paciente" mat-button [matMenuTriggerFor]="persona" >
         <mat-icon aria-hidden="false" aria-label="Example home icon">accessibility</mat-icon>
-        <mat-card-title [routerLink]="['/pacientes']">Agregar Pacientes</mat-card-title>
+        <mat-card-title>Personas</mat-card-title>
+        <mat-menu #persona="matMenu">
+          <button mat-menu-item [routerLink]="['/personas']">Agregar</button>
+          <button mat-menu-item [routerLink]="['/persona-listar']">Listar</button>
+        </mat-menu>
       </mat-card>
     </div>
     <div class="col">
-      <mat-card id="ficha">
+      <mat-card id="ficha" mat-button [matMenuTriggerFor]="paciente">
         <mat-icon aria-hidden="false" aria-label="Example home icon">assignment</mat-icon>
-        <mat-card-title [routerLink]="['/ficha']">Paciente</mat-card-title>
+        <mat-card-title>Paciente</mat-card-title>
+        <mat-menu #paciente="matMenu">
+          <button mat-menu-item [routerLink]="['/pacientes']">Agregar</button>
+          <button mat-menu-item [routerLink]="['/persona-listar']">Listar</button>
+        </mat-menu>
       </mat-card>
     </div>
     <div class="col">
