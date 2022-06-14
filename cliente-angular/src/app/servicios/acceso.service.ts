@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AccesoService {
- public API_URI = 'http://143.110.236.61:3000/api'
+//  public API_URI = 'http://localhost:3000/api'
+public API_URI = 'http://143.110.236.61:3000/api'
 
   constructor(private http: HttpClient, private router: Router) { }
 

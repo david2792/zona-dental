@@ -81,6 +81,9 @@
               </div>
             </div>
           </div>
+          <mat-toolbar *ngIf="alerta==true" (click)="limpiar()">
+            <span >{{mensaje}}</span>
+          </mat-toolbar>
           <div class="row">
             <div class="col" id="acciones">
               <button mat-raised-button  (click)="guardar()" [disabled]="clienteformulario.invalid" style=" background: rgb(143, 209, 130); color: white;">Guardar</button>

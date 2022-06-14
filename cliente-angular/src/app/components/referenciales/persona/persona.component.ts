@@ -25,6 +25,7 @@ interface Estado{
 }
 
 
+
 @Component({
   selector: 'app-persona',
   templateUrl: './persona.component.html',
@@ -90,6 +91,10 @@ alerta=false
         direccion:new FormControl(null,Validators.required),
         telefono:new FormControl(null,Validators.required),
         whatsapp:new FormControl(null,Validators.required),
+        emergencia:new FormControl(null,Validators.required),
+        grupo_sanguineo:new FormControl(null,Validators.required),
+        odontologo:new FormControl(null,Validators.required),
+        tutor:new FormControl(null,Validators.required),
         idgenero: new FormControl(),
         idciudad: new FormControl(),
         idprofesion:new FormControl(),

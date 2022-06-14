@@ -12,6 +12,8 @@ class Persona_Rutas {
         this.router.post('/crear/', persona_1.personaControl.crear);
         this.router.get('/listar', persona_1.personaControl.listarTodo);
         this.router.post('/crearpaciente', pacientes_1.pacienteControl.crear);
+        //    rutas de pacientes
+        this.router.get('/listar-paciente', persona_1.personaControl.listarPaciente);
     }
 }
 const personaRutas = new Persona_Rutas();

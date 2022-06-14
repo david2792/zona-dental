@@ -4,34 +4,28 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PacientesService } from 'src/app/servicios/referenciales/pacientes.service';
 
-
 @Component({
-  selector: 'app-persona-lista',
-  templateUrl: './persona-lista.component.html',
-  styleUrls: ['./persona-lista.component.css']
+  selector: 'app-paciente-lista',
+  templateUrl: './paciente-lista.component.html',
+  styleUrls: ['./paciente-lista.component.css']
 })
 
-export class PersonaListaComponent implements OnInit {
 
+export class PacienteListaComponent implements OnInit {
+  persona:any=[]
 
-persona:any=[]
+  displayedColumns: string[] = ['codigo', 'cedula', 'nombre','gruposanguineo','fecha_nacimiento','direccion' ,'telefono','whatsapp','ciudad','profesion','genero' , 'acciones'];
+  dataSource: MatTableDataSource<any>;
 
-displayedColumns: string[] = ['codigo', 'cedula', 'nombre','fecha_nacimiento','direccion' ,'telefono','whatsapp','gruposanguineo','tutor_legal','odontologo' , 'acciones'];
-dataSource: MatTableDataSource<any>;
-
-@ViewChild(MatPaginator) paginator: MatPaginator;
-@ViewChild(MatSort) sort: MatSort;
-
-
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   constructor(public servicios: PacientesService) { }
 
   ngOnInit(): void {
     this.listar()
-
   }
-
   listar(){
-    this.servicios.getPersonas().subscribe((res:any)=>{
+    this.servicios.getPacientes().subscribe((res:any)=>{
         this.persona = res
         console.log(this.persona)
         this.dataSource = new MatTableDataSource(res)
@@ -56,6 +50,4 @@ dataSource: MatTableDataSource<any>;
       this.dataSource.paginator.firstPage();
     }
   }
-
-
 }

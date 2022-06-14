@@ -5,6 +5,7 @@ import { InicioComponent } from './components/control-panel/inicio/inicio.compon
 import { LoginComponent } from './components/control-panel/login/login.component';
 import { PrincipalComponent } from './components/control-panel/principal/principal.component';
 import { AntecendenteMedicoComponent } from './components/referenciales/antecendente-medico/antecendente-medico.component';
+import { PacienteListaComponent } from './components/referenciales/paciente-lista/paciente-lista.component';
 import { PacienteComponent } from './components/referenciales/paciente/paciente.component';
 import { PersonaListaComponent } from './components/referenciales/persona-lista/persona-lista.component';
 import { PersonaComponent } from './components/referenciales/persona/persona.component';
@@ -39,6 +40,11 @@ const routes: Routes = [
      {
       path:'persona-listar',
       component:PersonaListaComponent,
+      canActivate:[AuthGuard]
+     },
+     {
+      path:'paciente-listar',
+      component:PacienteListaComponent,
       canActivate:[AuthGuard]
      }
 

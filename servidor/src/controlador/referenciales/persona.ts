@@ -23,7 +23,7 @@ class PersonaControl
     const conn = await connect();
   try 
   {
-    const persona =  await conn.query('SELECT * FROM vpersonas');
+    const persona =  await conn.query('SELECT * FROM personas');
     if(persona.length > 0)
     {
       conn.end()
@@ -36,6 +36,26 @@ class PersonaControl
     conn.end()
   }
   } 
+  // se crea el metdo para obtener pacientes
+  public async listarPaciente (req:Request,res:Response):Promise<any>
+  {
+    const conn = await connect();
+  try 
+  {
+    const persona =  await conn.query('SELECT * FROM vpacientes');
+    if(persona.length > 0)
+    {
+      conn.end()
+      return res.json(persona);
+    }
+  } 
+  catch (error) 
+  {
+    res.status(404).json({text:'El paciente no existe'});
+    conn.end()
+  }
+  } 
+  // se cierre
 
   public async crear(req: Request, res: Response): Promise<void> 
   {
@@ -53,8 +73,8 @@ class PersonaControl
       const estado= await conn.query('SELECT idestadociviles FROM estadociviles WHERE descripcion =?',req.body.idestado);
       const ciudad= await conn.query('SELECT idciudad FROM ciudad WHERE nombre =?',req.body.idciudad);
     // se carga los valores
-      const nombre = req.body.nombre
-      const apellido = req.body.apellido
+      const nombre = req.body.nombre.toUpperCase()
+      const apellido = req.body.apellido.toUpperCase()
       const ci = req.body.cedula
       const ruc = req.body.ruc
       const nacimiento = req.body.fecha
@@ -63,6 +83,10 @@ class PersonaControl
       const telefono = req.body.telefono
       const whatsapp = req.body.whatsapp
       const direccion = req.body.telefono
+      const gruposanguineo = req.body.grupo_sanguineo.toUpperCase()
+      const telefono_emergencia= req.body.emergencia
+      const tutor_legal = req.body.tutor.toUpperCase()
+      const odontologo = req.body.odontologo.toUpperCase()
       console.log(genero)
       const idgenero = genero[0].idgenero
       const idprofesion = profesion[0].idprofesion
@@ -70,7 +94,7 @@ class PersonaControl
       const idciudad = ciudad[0].idciudad
       // valores en un array
       const valores = {
-        idpersonas,nombre,apellido,ci,ruc,fecha_nacimiento,correo,telefono,whatsapp,direccion,idciudad,idgenero,idprofesion,idestadociviles
+        idpersonas,nombre,apellido,ci,ruc,fecha_nacimiento,correo,telefono,whatsapp,direccion,idciudad,idgenero,idprofesion,idestadociviles,gruposanguineo,telefono_emergencia,tutor_legal,odontologo
       }
       await conn.query('INSERT INTO personas  SET ?', valores);
       conn.end()

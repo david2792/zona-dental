@@ -39,7 +39,9 @@ export class PacientesService {
       return this.http.get(`${this.rutas.API_URI}/persona/listar`);
     }
 
-
+    getPacientes(){
+          return this.http.get(`${this.rutas.API_URI}/persona/listar-paciente`);
+        }
 
 }
 

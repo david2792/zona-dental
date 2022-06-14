@@ -17,6 +17,8 @@ export class PacienteComponent implements OnInit {
  // disabled:boolean=true
   clienteformulario: FormGroup
   datos:any=[]
+  mensaje=''
+  alerta=false
 
   constructor(private pacienteServicio:PacientesService,public dialog: MatDialog) {
 
@@ -48,8 +50,15 @@ export class PacienteComponent implements OnInit {
       this.pacienteServicio.guadarPaciente(this.datos).subscribe(
            res=>{
              console.log(res)
+             this.alerta=true;
+             this.mensaje= "REGISRO GUARDADO"
+           },
+           err=>{
+            console.log(err)
+            this.alerta=true
+            this.mensaje="OCURRIO UN ERROR"
 
-           }
+          }
         )
         this.limpiar()
     }
@@ -63,6 +72,8 @@ export class PacienteComponent implements OnInit {
    this.clienteformulario.get('telefono')?.setValue(" ")
    this.clienteformulario.get('odontologo')?.setValue(" ")
    this.clienteformulario.get('legal')?.setValue(" ")
+   this.alerta=false
+   this.mensaje=''
  }
 
 abrirBuscador(){

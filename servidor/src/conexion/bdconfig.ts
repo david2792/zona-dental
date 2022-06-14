@@ -3,7 +3,7 @@ export default
     database:
     {
    host:'143.110.236.61',
-   // host:'localhost',
+    //host:'localhost',
         user: 'root',
     //password: 'd3v3l0p3r', // red digital ocean
     password: '<*claveS3cr3t4*>', // red digital ocean

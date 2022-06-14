@@ -20,6 +20,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { PersonaListaComponent } from './persona-lista/persona-lista.component';
+import { PacienteListaComponent } from './paciente-lista/paciente-lista.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { PersonaListaComponent } from './persona-lista/persona-lista.component';
     AntecendenteMedicoComponent,
     PersonaComponent,
     BuscarPersonaComponent,
-    PersonaListaComponent
+    PersonaListaComponent,
+    PacienteListaComponent
   ],
   imports: [
     CommonModule,
