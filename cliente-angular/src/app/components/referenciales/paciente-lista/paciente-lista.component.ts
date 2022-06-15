@@ -14,7 +14,7 @@ import { PacientesService } from 'src/app/servicios/referenciales/pacientes.serv
 export class PacienteListaComponent implements OnInit {
   persona:any=[]
 
-  displayedColumns: string[] = ['codigo', 'cedula', 'nombre','gruposanguineo','fecha_nacimiento','direccion' ,'telefono','whatsapp','ciudad','profesion','genero' , 'acciones'];
+  displayedColumns: string[] = ['codigo','cedula', 'nombre', 'apellido','matricula','telefono','acciones'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -25,7 +25,7 @@ export class PacienteListaComponent implements OnInit {
     this.listar()
   }
   listar(){
-    this.servicios.getPacientes().subscribe((res:any)=>{
+    this.servicios.getDoctores().subscribe((res:any)=>{
         this.persona = res
         console.log(this.persona)
         this.dataSource = new MatTableDataSource(res)

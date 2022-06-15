@@ -5,7 +5,8 @@ export default
       host:'143.110.236.61',
     //host:'localhost',
         user: 'root',
-       //password: 'developer', // red digital ocean
+        //user: 'manager',
+    //password: 'developer', // red digital ocean
     password: '<*claveS3cr3t4*>', // red digital ocean
     //  password: 'CL4V3S3CR3T4',
         database: 'zona_dental1',

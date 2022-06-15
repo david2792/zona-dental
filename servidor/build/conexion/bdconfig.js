@@ -5,6 +5,7 @@ exports.default = {
         host: '143.110.236.61',
         //host:'localhost',
         user: 'root',
+        //user: 'manager',
         //password: 'developer', // red digital ocean
         password: '<*claveS3cr3t4*>',
         //  password: 'CL4V3S3CR3T4',

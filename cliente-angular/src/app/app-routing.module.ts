@@ -43,7 +43,7 @@ const routes: Routes = [
       canActivate:[AuthGuard]
      },
      {
-      path:'paciente-listar',
+      path:'doctor-listar',
       component:PacienteListaComponent,
       canActivate:[AuthGuard]
      }
