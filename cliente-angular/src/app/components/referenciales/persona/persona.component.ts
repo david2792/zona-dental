@@ -114,7 +114,7 @@ alerta=false
   // buscador
   cargarDatosPersonas(valor:any=[]){
     this.datosPeronas.get('iddoctores')?.setValue(valor.iddoctores)
-    this.datosPeronas.get('doctor')?.setValue(valor.nombre)
+    this.datosPeronas.get('doctor')?.setValue(valor.nombre+" "+valor.apellido)
    }
    abrirBuscador(){
     let dialogRef =this.dialog.open(BuscarPersonaComponent,{
