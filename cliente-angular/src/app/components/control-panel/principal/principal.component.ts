@@ -1,4 +1,6 @@
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-principal',
@@ -10,6 +12,9 @@ export class PrincipalComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+this.dato()
   }
-
+  dato(){
+   console.log(localStorage.getItem('tokenData'))
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -29,9 +30,11 @@ dataSource: MatTableDataSource<any>;
     this.listar()
 
   }
+// buscador
 
+// fin
   listar(){
-    this.servicios.getPersonas().subscribe((res:any)=>{
+    this.servicios.getPacientes().subscribe((res:any)=>{
         this.persona = res
         console.log(this.persona)
         this.dataSource = new MatTableDataSource(res)

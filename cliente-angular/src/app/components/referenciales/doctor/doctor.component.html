@@ -1,0 +1,83 @@
+<div class="container">
+  <form [formGroup]="doctorFormulario" autocomplete="off">
+      <mat-card id="co" style="border-radius: 20px;">
+        <mat-card-title id="acciones" style="border-radius: 10px; padding: 10px; background: #343A40; color: white;">Registro de Doctores</mat-card-title>
+        <mat-card-subtitle>Permite ingresar los datos básicos del pacientes antes de la consulta</mat-card-subtitle>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline" >
+                <mat-label>Cedula</mat-label>
+                <input
+                formControlName="cedula"
+                [disabled]="true"
+                matInput placeholder="Datos del Paciente">
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline" >
+                <mat-label>Nombre Completo</mat-label>
+                <input
+                formControlName="nombre"
+                matInput placeholder="Datos del Doctor">
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline" >
+                <mat-label>Apellido Completo</mat-label>
+                <input
+                formControlName="apellido"
+                matInput placeholder="Datos del Paciente">
+              </mat-form-field>
+              <div *ngIf="this.doctorFormulario.get('apellido') && this.doctorFormulario.get('apellido')?.invalid && this.doctorFormulario.get('apellido')?.touched" class="alert alert-danger" >
+                Ingrese el apellido
+              </div>
+            </div>
+            <div class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline" >
+                <mat-label>Número de Matricula</mat-label>
+                <input
+                formControlName="matricula"
+                matInput placeholder="Datos del Doctor">
+              </mat-form-field>
+              <div *ngIf="this.doctorFormulario.get('matricula') && this.doctorFormulario.get('matricula')?.invalid && this.doctorFormulario.get('matricula')?.touched" class="alert alert-danger" >
+                Ingrese la matricula
+              </div>
+            </div>
+            <div class="col-4">
+              <mat-form-field class="example-full-width" appearance="outline" >
+                <mat-label>Telefono</mat-label>
+                <input
+                formControlName="telefono"
+                matInput placeholder="Datos del Paciente">
+              </mat-form-field>
+              <div *ngIf="this.doctorFormulario.get('telefono') && this.doctorFormulario.get('telefono')?.invalid && this.doctorFormulario.get('telefono')?.touched" class="alert alert-danger" >
+                Ingrese el numero de telefono
+              </div>
+            </div>
+          </div>
+          <mat-toolbar *ngIf="alerta==true" (click)="limpiar()">
+            <span >{{mensaje}}</span>
+          </mat-toolbar>
+          <div class="row">
+            <div class="col" id="acciones">
+              <button mat-raised-button  (click)="guardar()" [disabled]="doctorFormulario.invalid" style=" background: rgb(143, 209, 130); color: white;">Guardar</button>
+              <button mat-raised-button style=" background: rgb(9, 9, 9); color: white;">Modificar</button>
+              <button mat-raised-button type="reset" style=" background: #949BA3; color: white;" >Cancerlar</button>
+              <button mat-raised-button [routerLink]="['/principal']" style=" background: #042953; color: white;">Volver</button>
+
+            </div>
+          </div>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+          <button mat-button>LIKE</button>
+          <button mat-button>SHARE</button>
+        </mat-card-actions> -->
+
+      </mat-card>
+      <br>
+
+    </form>
+    <!-- BUSCADOR -->
+
+</div>

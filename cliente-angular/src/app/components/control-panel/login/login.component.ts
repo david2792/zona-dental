@@ -9,8 +9,8 @@ import { AccesoService } from 'src/app/servicios/acceso.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-usuarios={}
-
+mensaje:any=''
+alerta:boolean=false
 usuarioFormulario:FormGroup
   constructor(private acceso:AccesoService, private router:Router) {
     this.usuarioFormulario = new FormGroup(
@@ -24,13 +24,19 @@ usuarioFormulario:FormGroup
   ngOnInit(): void {
   }
 login(){
-  this.acceso.ingresar(this.usuarioFormulario.value).subscribe(
-    res=>{
-      console.log(res)
-      localStorage.setItem('token',JSON.stringify(res))
+  this.acceso.ingresar(this.usuarioFormulario.value).subscribe((res:any)=>{
+     // console.log(res)
+     localStorage.setItem('token',res.token)
+    //  console.log(res)
+      this.alerta=false
       this.router.navigate(['/principal']);
     },
-    err=>{console.log(err)}
+    err=>{
+      this.alerta=true
+      console.log(err)}
   )
+}
+cerrar(){
+  this.alerta=false
 }
 }

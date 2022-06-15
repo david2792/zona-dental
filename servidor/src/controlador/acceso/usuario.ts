@@ -11,20 +11,20 @@ class UsuarioControlador {
         var SECRET = "SECRETO_PARA_ENCRIPTACION"
         const pool= await connect()
         try {
-           
-            const datosusuarios = await pool.query('SELECT * FROM vusuario');
+            const users = req.body.usuario;
+            const pass = req.body.contraseña;
+            const datosusuarios = await pool.query('SELECT * FROM usuarios WHERE usuario=? AND contraseña=?',[users, pass]);
             JSON.stringify(datosusuarios);
-            console.log(datosusuarios);
             const cod= datosusuarios[0].idusuarios;
             const usuario = datosusuarios[0].usuario;
+            console.log(datosusuarios);
             const clave = datosusuarios[0].contraseña;
             const descripcion = datosusuarios[0].descripcion;
             const nombre =datosusuarios[0].nombre+" "+datosusuarios[0].apellido
             const value = { usuario,  clave };
-            const users = req.body.usuario;
-            const pass = req.body.contraseña;
+            
             console.log(pass)
-            if (users == usuario && pass ==  clave) {
+            // if (users == usuario && pass ==  clave) {
                 var tokenData = {
                     codigo:cod,
                     users: users,
@@ -41,12 +41,14 @@ class UsuarioControlador {
                 })
                // console.log(token)
                pool.end()
-               console.log(tokenData)
+              console.log(({token,tokenData}))
                 res.header('auth-token',token).json({token,tokenData})
-            }else{
-                pool.end()
-                localStorage.clear();
-            }
+                //res.json(tokenData)
+            // }else{
+                
+            //     pool.end()
+            //     localStorage.clear();
+            // }
 
 
         } catch (error) {

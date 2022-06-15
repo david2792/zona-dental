@@ -63,6 +63,54 @@ class PersonaControl {
         });
     }
     // se cierre
+    // parte de doctores crear, modificar y listar
+    listarDoctores(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const conn = yield (0, conexionBD_1.connect)();
+            try {
+                const doctor = yield conn.query('SELECT * FROM doctores');
+                if (doctor.length > 0) {
+                    conn.end();
+                    return res.json(doctor);
+                }
+            }
+            catch (error) {
+                res.status(404).json({ text: 'los datos no existe' });
+                conn.end();
+            }
+        });
+    }
+    guardarDoctor(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const conn = yield (0, conexionBD_1.connect)();
+            try {
+                const datos = req.body;
+                console.log(datos);
+                const codigo = yield conn.query('SELECT MAX(iddoctores) AS iddoctores FROM doctores');
+                JSON.stringify(codigo);
+                const codigodoctor = codigo[0].iddoctores;
+                const iddoctores = codigodoctor + 1;
+                const nombre = req.body.nombre.toUpperCase();
+                const apellido = req.body.apellido.toUpperCase();
+                const cedula = req.body.cedula;
+                const telefono = req.body.telefono;
+                const numero_matricula = req.body.matricula.toUpperCase();
+                const valores = {
+                    iddoctores, numero_matricula, nombre, apellido, cedula, telefono,
+                };
+                console.log(valores);
+                yield conn.query('INSERT INTO doctores  SET ?', valores);
+                conn.end();
+                res.status(200).json({ message: "registro guardado" });
+            }
+            catch (error) {
+                console.log(error);
+                res.status(404).json({ text: 'error al guardar los datos' });
+                conn.end();
+            }
+        });
+    }
+    // fin doctores
     crear(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conn = yield (0, conexionBD_1.connect)();
@@ -92,7 +140,7 @@ class PersonaControl {
                 const gruposanguineo = req.body.grupo_sanguineo.toUpperCase();
                 const telefono_emergencia = req.body.emergencia;
                 const tutor_legal = req.body.tutor.toUpperCase();
-                const odontologo = req.body.odontologo.toUpperCase();
+                const iddoctores = req.body.iddoctores;
                 console.log(genero);
                 const idgenero = genero[0].idgenero;
                 const idprofesion = profesion[0].idprofesion;
@@ -100,7 +148,7 @@ class PersonaControl {
                 const idciudad = ciudad[0].idciudad;
                 // valores en un array
                 const valores = {
-                    idpersonas, nombre, apellido, ci, ruc, fecha_nacimiento, correo, telefono, whatsapp, direccion, idciudad, idgenero, idprofesion, idestadociviles, gruposanguineo, telefono_emergencia, tutor_legal, odontologo
+                    idpersonas, nombre, apellido, ci, ruc, fecha_nacimiento, correo, telefono, whatsapp, direccion, idciudad, idgenero, idprofesion, idestadociviles, gruposanguineo, telefono_emergencia, tutor_legal, iddoctores
                 };
                 yield conn.query('INSERT INTO personas  SET ?', valores);
                 conn.end();

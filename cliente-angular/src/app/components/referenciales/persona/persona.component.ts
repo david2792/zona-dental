@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { map,debounceTime,startWith, Observable } from 'rxjs';
 import {PacientesService} from '../../../servicios/referenciales/pacientes.service'
 import {Personas} from '../../../modelo/referenciales-personas/Personas'
-
+import { BuscarPersonaComponent } from '../buscador/buscar-persona/buscar-persona.component';
+import { MatDialog } from '@angular/material/dialog';
 interface Ciudad {
   idciudad:string;
   nombre: string;
@@ -78,7 +79,7 @@ export class PersonaComponent implements OnInit {
 mensaje=''
 alerta=false
 
-  constructor( private pacienteServicio:PacientesService, private formBuilder: FormBuilder) {
+  constructor( private pacienteServicio:PacientesService, private formBuilder: FormBuilder,public dialog: MatDialog) {
 
       this.datosPeronas = new FormGroup({
 
@@ -93,12 +94,13 @@ alerta=false
         whatsapp:new FormControl(null,Validators.required),
         emergencia:new FormControl(null,Validators.required),
         grupo_sanguineo:new FormControl(null,Validators.required),
-        odontologo:new FormControl(null,Validators.required),
         tutor:new FormControl(null,Validators.required),
         idgenero: new FormControl(),
         idciudad: new FormControl(),
         idprofesion:new FormControl(),
         idestado: new FormControl(),
+        iddoctores:new FormControl(null,Validators.required),
+        doctor:new FormControl(null,Validators.required),
       });
 
    }
@@ -109,6 +111,20 @@ alerta=false
     this.BuscarProfesion()
     this.BuscarEstado()
   }
+  // buscador
+  cargarDatosPersonas(valor:any=[]){
+    this.datosPeronas.get('iddoctores')?.setValue(valor.iddoctores)
+    this.datosPeronas.get('doctor')?.setValue(valor.nombre)
+   }
+   abrirBuscador(){
+    let dialogRef =this.dialog.open(BuscarPersonaComponent,{
+      data:[]
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.cargarDatosPersonas(result)
+    });
+  }
+  // fin
 limpiar(){
   this.datosgenero.setValue('')
   this.datosciudad.setValue('')

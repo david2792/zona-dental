@@ -41,7 +41,7 @@ bandera:boolean=true
 
   ngOnInit(): void {
 
-    this.servicios.getDoctores().subscribe((res:any)=>{
+    this.servicios.getPersonas().subscribe((res:any)=>{
         this.dataSource = new MatTableDataSource(res)
         this.dataSource.paginator = this.paginator
 

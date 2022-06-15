@@ -24,41 +24,41 @@ class UsuarioControlador {
             var SECRET = "SECRETO_PARA_ENCRIPTACION";
             const pool = yield (0, conexionBD_1.connect)();
             try {
-                const datosusuarios = yield pool.query('SELECT * FROM vusuario');
+                const users = req.body.usuario;
+                const pass = req.body.contraseña;
+                const datosusuarios = yield pool.query('SELECT * FROM usuarios WHERE usuario=? AND contraseña=?', [users, pass]);
                 JSON.stringify(datosusuarios);
-                console.log(datosusuarios);
                 const cod = datosusuarios[0].idusuarios;
                 const usuario = datosusuarios[0].usuario;
+                console.log(datosusuarios);
                 const clave = datosusuarios[0].contraseña;
                 const descripcion = datosusuarios[0].descripcion;
                 const nombre = datosusuarios[0].nombre + " " + datosusuarios[0].apellido;
                 const value = { usuario, clave };
-                const users = req.body.usuario;
-                const pass = req.body.contraseña;
                 console.log(pass);
-                if (users == usuario && pass == clave) {
-                    var tokenData = {
-                        codigo: cod,
-                        users: users,
-                        pass: pass,
-                        nombre: nombre,
-                        descripcion: descripcion
-                        // ANY DATA
-                    };
-                    console.log("bienvenido");
-                    // var token = jwt.sign(users:users, SECRET, { expiresIn: '1h' , algorithm: 'RS256' })
-                    var token = jsonwebtoken_1.default.sign(tokenData, 'Secret Password', {
-                        expiresIn: "8h" // expires in 24 hours
-                    });
-                    // console.log(token)
-                    pool.end();
-                    console.log(tokenData);
-                    res.header('auth-token', token).json({ token, tokenData });
-                }
-                else {
-                    pool.end();
-                    localStorage.clear();
-                }
+                // if (users == usuario && pass ==  clave) {
+                var tokenData = {
+                    codigo: cod,
+                    users: users,
+                    pass: pass,
+                    nombre: nombre,
+                    descripcion: descripcion
+                    // ANY DATA
+                };
+                console.log("bienvenido");
+                // var token = jwt.sign(users:users, SECRET, { expiresIn: '1h' , algorithm: 'RS256' })
+                var token = jsonwebtoken_1.default.sign(tokenData, 'Secret Password', {
+                    expiresIn: "8h" // expires in 24 hours
+                });
+                // console.log(token)
+                pool.end();
+                console.log(({ token, tokenData }));
+                res.header('auth-token', token).json({ token, tokenData });
+                //res.json(tokenData)
+                // }else{
+                //     pool.end()
+                //     localStorage.clear();
+                // }
             }
             catch (error) {
                 pool.end();

@@ -13,6 +13,9 @@
                       <input class="form-control" type="password" required="" placeholder="Password" formControlName="contraseña">
                   </div>
               </div>
+              <div class="alert alert-danger" *ngIf="alerta==true" (click)="cerrar()">
+                Usuario o Contraseña Inconrrecta
+              </div>
               <div class="form-group row">
                   <div class="col-md-12">
                       <div class="checkbox checkbox-primary pull-left p-t-0">
@@ -57,3 +60,4 @@
       </div>
   </div>
 </section>
+

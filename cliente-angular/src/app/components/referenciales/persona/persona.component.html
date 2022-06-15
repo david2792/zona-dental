@@ -5,7 +5,7 @@
         <mat-card-subtitle>Permite ingresar los datos básicos del pacientes antes de la consulta</mat-card-subtitle>
         <mat-card-content>
         <div class="row">
-          <div class="col-6">
+          <div class="col-sm-6 col-12">
             <!-- primer campo -->
             <mat-form-field class="example-full-width" appearance="outline" >
               <mat-label>Nombre Completo</mat-label>
@@ -18,7 +18,7 @@
             </div>
             <!-- fin -->
           </div>
-          <div class="col-6">
+          <div class="col-sm-6 col-12">
                <!-- segundo campo -->
                <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Apellido Completo</mat-label>
@@ -31,7 +31,7 @@
                 Ingrese el nombre
               </div>
           </div>
-          <div class="col-3">
+          <div class="col-sm-3 col-12">
           <!-- segundo campo -->
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Numero de C.I</mat-label>
@@ -44,7 +44,7 @@
             Ingrese el nombre
           </div>
           </div>
-          <div class="col-3">
+          <div class="col-sm-3 col-12">
             <!-- segundo campo -->
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Numero RUC</mat-label>
@@ -57,7 +57,7 @@
               Ingrese el nombre
             </div>
             </div>
-          <div class="col-3">
+          <div class="col-sm-3 col-12">
             <!-- segundo campo -->
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Fecha de Nacimiento</mat-label>
@@ -67,7 +67,7 @@
             </mat-form-field>
             <!-- fin -->
           </div>
-          <div class="col-3">
+          <div class="col-sm-3 col-12">
             <!-- quinto campo -->
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Correo Electronico</mat-label>
@@ -77,7 +77,7 @@
             </mat-form-field>
             <!-- fin -->
           </div>
-          <div class="col-4">
+          <div class="col-sm-4 col-12">
             <!-- sexto campo -->
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Telefono</mat-label>
@@ -91,7 +91,7 @@
               Ingrese el telefono
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-sm-4 col-12">
                <!-- sexto campo -->
                <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Telefono Whatsapp</mat-label>
@@ -105,7 +105,7 @@
                 Ingrese el numero de Whatsapp
               </div>
           </div>
-          <div class="col-4">
+          <div class="col-sm-4 col-12">
             <!-- sexto campo -->
             <mat-form-field class="example-full-width" appearance="outline">
              <mat-label>Telefono Emergencia</mat-label>
@@ -119,7 +119,7 @@
              Ingrese el numero de Emergencia
            </div>
        </div>
-          <div class="col-4">
+          <div class="col-sm-4 col-12">
             <!-- sexto campo -->
             <mat-form-field class="example-full-width" appearance="outline">
               <input type="text"
@@ -137,7 +137,7 @@
            <!-- fin -->
 
        </div>
-       <div class="col-4">
+       <div class="col-sm-4 col-12">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Direccion</mat-label>
           <input
@@ -148,7 +148,7 @@
           Ingrese la Direccion
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-sm-4 col-12">
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Grupo Sanguineo</mat-label>
           <input
@@ -159,7 +159,7 @@
           Ingrese el Grupo Sanguineo
         </div>
       </div>
-       <div class="col-4">
+       <div class="col-sm-4 col-12">
        <!-- sexto campo -->
             <mat-form-field class="example-full-width" appearance="outline">
               <input type="text"
@@ -175,7 +175,7 @@
           </mat-form-field>
           <!-- fin -->
        </div>
-       <div class="col-4">
+       <div class="col-sm-4 col-12">
         <!-- sexto campo -->
              <mat-form-field class="example-full-width" appearance="outline">
                <input type="text"
@@ -191,7 +191,7 @@
            </mat-form-field>
            <!-- fin -->
         </div>
-        <div class="col-4">
+        <div class="col-sm-4 col-12">
           <!-- sexto campo -->
                <mat-form-field class="example-full-width" appearance="outline">
                  <input type="text"
@@ -207,18 +207,7 @@
              </mat-form-field>
              <!-- fin -->
           </div>
-          <div class="col-6">
-            <mat-form-field class="example-full-width" appearance="outline">
-              <mat-label>Odontologo/a de Cabecera</mat-label>
-              <input
-              formControlName="odontologo"
-              matInput placeholder="Odontologo/a de Cabecera">
-            </mat-form-field>
-            <div *ngIf="this.datosPeronas.get('odontologo') && this.datosPeronas.get('odontologo')?.invalid && this.datosPeronas.get('odontologo')?.touched" class="alert alert-danger" >
-              Ingrese el Odontologo/a
-            </div>
-          </div>
-          <div class="col-6">
+          <div class="col-12">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Tutor Legal</mat-label>
               <input
@@ -228,6 +217,33 @@
             <div *ngIf="this.datosPeronas.get('tutor') && this.datosPeronas.get('tutor')?.invalid && this.datosPeronas.get('tutor')?.touched" class="alert alert-danger" >
               Ingrese el Tutor Legal
             </div>
+          </div>
+          <div class="col-sm-3 col-1">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Codigo</mat-label>
+              <input
+              formControlName="iddoctores"
+              matInput placeholder="Odontologo/a de Cabecera">
+            </mat-form-field>
+            <div *ngIf="this.datosPeronas.get('iddoctores') && this.datosPeronas.get('iddoctores')?.invalid && this.datosPeronas.get('iddoctores')?.touched" class="alert alert-danger" >
+              Ingrese el
+            </div>
+          </div>
+          <div class="col-sm-6 col-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Odontologo/a de Cabecera</mat-label>
+              <input
+              formControlName="doctor"
+              matInput placeholder="Odontologo/a de Cabecera">
+            </mat-form-field>
+            <div *ngIf="this.datosPeronas.get('doctor') && this.datosPeronas.get('doctor')?.invalid && this.datosPeronas.get('doctor')?.touched" class="alert alert-danger" >
+              Ingrese el Odontologo/a
+            </div>
+          </div>
+          <div class="col-1">
+            <a mat-fab color="primary" (click)="abrirBuscador()" aria-label="Example icon button with a delete icon">
+              <mat-icon>search</mat-icon>
+            </a>
           </div>
         </div>
         <mat-toolbar *ngIf="alerta==true" (click)="limpiar()">

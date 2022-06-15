@@ -27,10 +27,46 @@
       </mat-card>
     </div>
     <div class="col">
-      <mat-card id="doctor">
+      <mat-card id="doctor" mat-button [matMenuTriggerFor]="doctor">
         <mat-icon aria-hidden="false" aria-label="Example home icon">supervisor_account</mat-icon>
         <mat-card-title>Doctores</mat-card-title>
+        <mat-menu #doctor="matMenu">
+          <button mat-menu-item [routerLink]="['/doctor']">Agregar</button>
+          <button mat-menu-item >Listar</button>
+        </mat-menu>
       </mat-card>
     </div>
   </div>
 </div>
+
+<footer
+          class="text-center text-lg-start text-dark"
+          style="background-color: #ECEFF1"
+          >
+    <!-- Section: Social media -->
+    <section
+             class="d-flex justify-content-between p-4 text-white"
+             style="background-color:  rgba(10, 9, 9, 0.725);"
+             >
+      <!-- Left -->
+      <div class="me-5">
+        <span>Bienvenidos al Sistema </span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+
+      <!-- Right -->
+    </section>
+    <div
+         class="text-center p-3"
+         style="background-color: rgba(0, 0, 0, 0.2)"
+         >
+      © 2022 Copyright:
+      <a class="text-dark"
+         >Equipo Smart</a
+        >
+    </div>
+    <!-- Copyright -->
+  </footer>
+

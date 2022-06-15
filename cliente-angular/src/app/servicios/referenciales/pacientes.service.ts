@@ -43,12 +43,12 @@ export class PacientesService {
           return this.http.get(`${this.rutas.API_URI}/persona/listar-paciente`);
         }
 
+// aca comienza los servicios de doctores
+guardarDoctores(doctor:any ){
+  return this.http.post(`${this.rutas.API_URI}/persona/doctor`,doctor);
+}
+getDoctores(){
+  return this.http.get(`${this.rutas.API_URI}/persona/doctor/listar`);
+}
 }
 
-class foo{
- datos:''
-  getdatos(datos:Personas){
-    return datos
-  }
-
-}

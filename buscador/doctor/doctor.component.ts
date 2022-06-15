@@ -9,10 +9,10 @@ import { BuscarPersonaComponent } from '../buscador/buscar-persona/buscar-person
 
 @Component({
   selector: 'app-paciente',
-  templateUrl: './paciente.component.html',
-  styleUrls: ['./paciente.component.css']
+  templateUrl: './doctor.component.html',
+  styleUrls: ['./doctor.component.css']
 })
-export class PacienteComponent implements OnInit {
+export class DoctorComponent implements OnInit {
 
  // disabled:boolean=true
   clienteformulario: FormGroup
