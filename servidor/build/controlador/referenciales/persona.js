@@ -68,7 +68,7 @@ class PersonaControl {
         return __awaiter(this, void 0, void 0, function* () {
             const conn = yield (0, conexionBD_1.connect)();
             try {
-                const doctor = yield conn.query('SELECT * FROM doctores');
+                const doctor = yield conn.query('SELECT iddoctores, nombre, apellido, CONCAT(nombre,apellido) AS valor  FROM doctores');
                 if (doctor.length > 0) {
                     conn.end();
                     return res.json(doctor);

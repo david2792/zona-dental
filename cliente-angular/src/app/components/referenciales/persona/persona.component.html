@@ -1,4 +1,4 @@
-<div class="container">
+<div >
   <form [formGroup]="datosPeronas" autocomplete="off">
       <mat-card id="co" style="border-radius: 20px;">
         <mat-card-title id="acciones" style="border-radius: 10px; padding: 10px; background: #343A40; color: white;">Registro de Pacientes</mat-card-title>
@@ -122,14 +122,16 @@
           <div class="col-sm-4 col-12">
             <!-- sexto campo -->
             <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Ciudad</mat-label>
               <input type="text"
               placeholder="Ciudad"
               aria-label="Number"
               matInput
               [formControl]="datosciudad"
-              [matAutocomplete]="auto">
+              [matAutocomplete]="auto"
+              >
             <mat-autocomplete #auto="matAutocomplete">
-         <mat-option *ngFor="let option of filCiudad | async" [value]="option.nombre">
+         <mat-option *ngFor="let option of filCiudad | async" [value]="[option.nombre]">
            {{option.nombre}}
          </mat-option>
        </mat-autocomplete>
@@ -162,11 +164,14 @@
        <div class="col-sm-4 col-12">
        <!-- sexto campo -->
             <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Profesion</mat-label>
               <input type="text"
               placeholder="Profesion"
               matInput
               [formControl]="datosprofesion"
-              [matAutocomplete]="profesion">
+              [matAutocomplete]="profesion"
+              >
+
             <mat-autocomplete #profesion="matAutocomplete">
         <mat-option *ngFor="let option of filtroProfesiones | async" [value]="option.descripcion">
           {{option.descripcion}}
@@ -178,6 +183,7 @@
        <div class="col-sm-4 col-12">
         <!-- sexto campo -->
              <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Genero</mat-label>
                <input type="text"
                placeholder="Genero"
                matInput
@@ -194,6 +200,7 @@
         <div class="col-sm-4 col-12">
           <!-- sexto campo -->
                <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Estado Civil</mat-label>
                  <input type="text"
                  placeholder="Estado"
                  matInput
@@ -206,19 +213,38 @@
          </mat-autocomplete>
              </mat-form-field>
              <!-- fin -->
+
           </div>
-          <div class="col-12">
+          <div class="col-sm-5 col-12">
+            <!-- sexto campo -->
+                 <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Odontologo/a Tratante</mat-label>
+                   <input type="text"
+                   placeholder="Introducir nombre del Odontologo/a"
+                   matInput
+                   [formControl]="datoDoctor"
+                   [matAutocomplete]="doctor">
+                 <mat-autocomplete #doctor="matAutocomplete">
+             <mat-option *ngFor="let option of filtroDoctores | async" [value]="option.iddoctores+' - '+option.valor">
+               {{option.iddoctores+' - '+option.valor}}
+             </mat-option>
+           </mat-autocomplete>
+               </mat-form-field>
+               <!-- fin -->
+            </div>
+          <div class="col-sm-6 col-12">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Tutor Legal</mat-label>
               <input
               formControlName="tutor"
-              matInput placeholder="Tutor Legal">
+              matInput
+               placeholder="Tutor Legal">
             </mat-form-field>
             <div *ngIf="this.datosPeronas.get('tutor') && this.datosPeronas.get('tutor')?.invalid && this.datosPeronas.get('tutor')?.touched" class="alert alert-danger" >
               Ingrese el Tutor Legal
             </div>
           </div>
-          <div class="col-sm-3 col-1">
+          <!-- <div class="col-sm-3 col-1">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Codigo</mat-label>
               <input
@@ -228,8 +254,8 @@
             <div *ngIf="this.datosPeronas.get('iddoctores') && this.datosPeronas.get('iddoctores')?.invalid && this.datosPeronas.get('iddoctores')?.touched" class="alert alert-danger" >
               Ingrese el
             </div>
-          </div>
-          <div class="col-sm-6 col-12">
+          </div> -->
+          <!-- <div class="col-sm-6 col-12">
             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Odontologo/a de Cabecera</mat-label>
               <input
@@ -244,7 +270,8 @@
             <a mat-fab color="primary" (click)="abrirBuscador()" aria-label="Example icon button with a delete icon">
               <mat-icon>search</mat-icon>
             </a>
-          </div>
+          </div> -->
+
         </div>
         <mat-toolbar *ngIf="alerta==true" (click)="limpiar()">
           <span >{{mensaje}}</span>
@@ -252,7 +279,7 @@
         <div class="row">
           <div class="col" id="acciones">
             <button mat-raised-button  [disabled]="datosPeronas.invalid" (click)="crearPersona()" style=" background: rgb(143, 209, 130); color: white;">Guardar</button>
-            <button mat-raised-button style=" background: rgb(9, 9, 9); color: white;">Modificar</button>
+            <button mat-raised-button style=" background: rgb(9, 9, 9); color: white;" (click)="codigoCiudad()">Modificar</button>
             <button mat-raised-button type="reset" style=" background: #949BA3; color: white;" >Cancerlar</button>
             <button mat-raised-button [routerLink]="['/principal']" style=" background: #042953; color: white;">Volver</button>
 

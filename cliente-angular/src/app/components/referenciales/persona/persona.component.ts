@@ -25,7 +25,12 @@ interface Estado{
   descripcion:string;
 }
 
-
+interface Doctor{
+  iddoctores:string;
+  nombre: string;
+  apellido: string;
+  valor:string;
+}
 
 @Component({
   selector: 'app-persona',
@@ -40,6 +45,10 @@ export class PersonaComponent implements OnInit {
   profesionopciones: Profesion[] = [];
   filtroProfesiones: Observable<Profesion[]>
   profesiones:any=[]
+
+  doctoropciones: Doctor[]=[];
+  filtroDoctores:Observable<Doctor[]>;
+  doctores:any =[];
 
   estadoopciones: Estado[] = []
   filtroEstados: Observable<Estado[]>
@@ -56,6 +65,7 @@ export class PersonaComponent implements OnInit {
   datosciudad= new FormControl()
   datosprofesion=new FormControl()
   datosestado= new FormControl()
+  datoDoctor= new FormControl()
 
  datos:any[]=[]
 
@@ -99,8 +109,8 @@ alerta=false
         idciudad: new FormControl(),
         idprofesion:new FormControl(),
         idestado: new FormControl(),
-        iddoctores:new FormControl(null,Validators.required),
-        doctor:new FormControl(null,Validators.required),
+        iddoctores:new FormControl(),
+       // doctor:new FormControl(null,Validators.required),
       });
 
    }
@@ -110,26 +120,59 @@ alerta=false
     this.BuscarGenero()
     this.BuscarProfesion()
     this.BuscarEstado()
+    this.BuscarDoctor()
   }
   // buscador
   cargarDatosPersonas(valor:any=[]){
     this.datosPeronas.get('iddoctores')?.setValue(valor.iddoctores)
     this.datosPeronas.get('doctor')?.setValue(valor.nombre+" "+valor.apellido)
    }
-   abrirBuscador(){
-    let dialogRef =this.dialog.open(BuscarPersonaComponent,{
-      data:[]
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      this.cargarDatosPersonas(result)
-    });
+  //  abrirBuscador(){
+  //   let dialogRef =this.dialog.open(BuscarPersonaComponent,{
+  //     data:[]
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     this.cargarDatosPersonas(result)
+  //   });
+  // }
+  BuscarDoctor(){
+    this.pacienteServicio.getDoctores().subscribe(
+      res => {
+        this.doctores = res
+        return this.doctoropciones = this.doctores
+      },
+      err => console.error(err)
+    ),
+    this.filtroDoctores = this.datoDoctor.valueChanges.pipe(
+      debounceTime(1000),
+      startWith(' '),
+      //map(val => this._filter(val)
+      map(value => typeof value === 'string' ? value : value.valor),
+      map(valor => valor ? this._filterDoctor(valor ) : this.doctoropciones.slice())
+    )
+  }
+  private _filterDoctor(value: string): Doctor[] {
+    const filterValue = value.toLowerCase();
+    return this.doctoropciones.filter(doctor => doctor.nombre.toLowerCase().indexOf(filterValue)==0);
   }
   // fin
+  capturarcodigo(texto:string) {
+    const cod = texto.split("-")[0];
+    return cod;
+  }
+
+  codigoCiudad(){
+
+   const codigo =(this.datosciudad.value)
+   console.log(codigo.toString())
+   console.log("Soy el codigo de ciudad: "+this.capturarcodigo(codigo.toString()))
+  }
 limpiar(){
   this.datosgenero.setValue('')
   this.datosciudad.setValue('')
   this.datosestado.setValue('')
   this.datosprofesion.setValue('')
+  this.datoDoctor.setValue('')
   this.alerta=false
   this.mensaje=''
 }
@@ -139,6 +182,7 @@ limpiar(){
    this.datosPeronas.get('idprofesion')?.setValue(this.datosprofesion.value)
    this.datosPeronas.get('idgenero')?.setValue(this.datosgenero.value)
    this.datosPeronas.get('idestado')?.setValue(this.datosestado.value)
+   this.datosPeronas.get('iddoctores')?.setValue(this.capturarcodigo(this.datoDoctor.value))
    this.personas = this.datosPeronas.value
    console.log(this.personas)
    const confirmacion = window.confirm("Desea Guardar el Paciente?");
@@ -162,7 +206,6 @@ limpiar(){
  }
 
 
-
   BuscarCiudad(){
     this.pacienteServicio.consutlaCiudad().subscribe(
       res => {
@@ -170,20 +213,21 @@ limpiar(){
         return this.options = this.ciudades
       },
       err => console.error(err)
-    ),
+    )
     this.filCiudad = this.datosciudad.valueChanges.pipe(
       debounceTime(1000),
       startWith(' '),
       //map(val => this._filter(val)
       map(value => typeof value === 'string' ? value : value.nombre),
-      map(nombre => nombre ? this._filter(nombre) : this.options.slice())
+      map(nombre => nombre ? this._filter(nombre ) : this.options.slice())
     )
   }
   private _filter(value: string): Ciudad[] {
     const filterValue = value.toLowerCase();
-
+    console.log(filterValue)
     return this.options.filter(ciudad => ciudad.nombre.toLowerCase().indexOf(filterValue)==0 );
   }
+
 
   BuscarGenero(){
     this.pacienteServicio.consultaGenero().subscribe(

@@ -63,7 +63,7 @@ class PersonaControl
     const conn = await connect();
   try 
   {
-    const doctor =  await conn.query('SELECT * FROM doctores');
+    const doctor =  await conn.query('SELECT iddoctores, nombre, apellido, CONCAT(nombre,apellido) AS valor  FROM doctores');
     if(doctor.length > 0)
     {
       conn.end()
