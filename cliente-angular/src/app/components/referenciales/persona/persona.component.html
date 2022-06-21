@@ -225,7 +225,7 @@
                    [formControl]="datoDoctor"
                    [matAutocomplete]="doctor">
                  <mat-autocomplete #doctor="matAutocomplete">
-             <mat-option *ngFor="let option of filtroDoctores | async" [value]="option.iddoctores+' - '+option.valor">
+             <mat-option *ngFor="let option of filtroDoctores | async" [value]="option.iddoctores+' - '+option.nombre">
                {{option.iddoctores+' - '+option.valor}}
              </mat-option>
            </mat-autocomplete>
@@ -280,7 +280,7 @@
           <div class="col" id="acciones">
             <button mat-raised-button  [disabled]="datosPeronas.invalid" (click)="crearPersona()" style=" background: rgb(143, 209, 130); color: white;">Guardar</button>
             <button mat-raised-button style=" background: rgb(9, 9, 9); color: white;" (click)="codigoCiudad()">Modificar</button>
-            <button mat-raised-button type="reset" style=" background: #949BA3; color: white;" >Cancerlar</button>
+            <button mat-raised-button  type="reset" style=" background: #949BA3; color: white;" >Cancerlar</button>
             <button mat-raised-button [routerLink]="['/principal']" style=" background: #042953; color: white;">Volver</button>
 
           </div>

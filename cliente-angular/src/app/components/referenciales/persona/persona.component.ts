@@ -98,13 +98,13 @@ alerta=false
         cedula:new FormControl(null,Validators.required),
         ruc:new FormControl(null,Validators.required),
         fecha:new FormControl(null,Validators.required),
-        correo:new FormControl(null,Validators.required),
-        direccion:new FormControl(null,Validators.required),
+        correo:new FormControl(null),
+        direccion:new FormControl(null),
         telefono:new FormControl(null,Validators.required),
         whatsapp:new FormControl(null,Validators.required),
-        emergencia:new FormControl(null,Validators.required),
-        grupo_sanguineo:new FormControl(null,Validators.required),
-        tutor:new FormControl(null,Validators.required),
+        emergencia:new FormControl(),
+        grupo_sanguineo:new FormControl(),
+        tutor:new FormControl(),
         idgenero: new FormControl(),
         idciudad: new FormControl(),
         idprofesion:new FormControl(),
@@ -123,6 +123,7 @@ alerta=false
     this.BuscarDoctor()
   }
   // buscador
+
   cargarDatosPersonas(valor:any=[]){
     this.datosPeronas.get('iddoctores')?.setValue(valor.iddoctores)
     this.datosPeronas.get('doctor')?.setValue(valor.nombre+" "+valor.apellido)
@@ -144,7 +145,7 @@ alerta=false
       err => console.error(err)
     ),
     this.filtroDoctores = this.datoDoctor.valueChanges.pipe(
-      debounceTime(1000),
+      debounceTime(10),
       startWith(' '),
       //map(val => this._filter(val)
       map(value => typeof value === 'string' ? value : value.valor),
@@ -173,6 +174,7 @@ limpiar(){
   this.datosestado.setValue('')
   this.datosprofesion.setValue('')
   this.datoDoctor.setValue('')
+
   this.alerta=false
   this.mensaje=''
 }
@@ -215,7 +217,7 @@ limpiar(){
       err => console.error(err)
     )
     this.filCiudad = this.datosciudad.valueChanges.pipe(
-      debounceTime(1000),
+      debounceTime(100),
       startWith(' '),
       //map(val => this._filter(val)
       map(value => typeof value === 'string' ? value : value.nombre),
@@ -224,7 +226,6 @@ limpiar(){
   }
   private _filter(value: string): Ciudad[] {
     const filterValue = value.toLowerCase();
-    console.log(filterValue)
     return this.options.filter(ciudad => ciudad.nombre.toLowerCase().indexOf(filterValue)==0 );
   }
 
@@ -239,7 +240,7 @@ limpiar(){
     ),
     this.filtroGenero = this.datosgenero.valueChanges
     .pipe(
-      debounceTime(1000),
+      debounceTime(100),
       startWith(' '),
       //map(val => this._filter(val)
       map(value => typeof value === 'string' ? value : value.descripcion),
@@ -263,7 +264,7 @@ limpiar(){
     ),
     this.filtroProfesiones = this.datosprofesion.valueChanges
     .pipe(
-      debounceTime(1000),
+      debounceTime(100),
       startWith(' '),
       //map(val => this._filter(val)
       map(value => typeof value === 'string' ? value : value.descripcion),
@@ -286,7 +287,7 @@ limpiar(){
     ),
     this.filtroEstados = this.datosestado.valueChanges
     .pipe(
-      debounceTime(1000),
+      debounceTime(100),
       startWith(' '),
       //map(val => this._filter(val)
       map(value => typeof value === 'string' ? value : value.descripcion),

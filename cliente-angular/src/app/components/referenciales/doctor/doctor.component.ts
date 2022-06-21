@@ -37,7 +37,7 @@ export class DoctorComponent implements OnInit {
 
  guardar(){
 
-    const confirmacion = window.confirm("Desea Guardar el Paciente?");
+    const confirmacion = window.confirm("Desea Guardar el Doctor/a?");
     if(confirmacion==true){
       this.datos = this.doctorFormulario.value
       console.log(this.datos)

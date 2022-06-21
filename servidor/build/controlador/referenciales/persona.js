@@ -137,9 +137,21 @@ class PersonaControl {
                 const telefono = req.body.telefono;
                 const whatsapp = req.body.whatsapp;
                 const direccion = req.body.telefono;
-                const gruposanguineo = req.body.grupo_sanguineo.toUpperCase();
+                var gruposanguineo = req.body.grupo_sanguineo;
+                if (gruposanguineo == null) {
+                    gruposanguineo = "SIN INFORMACION";
+                }
+                else {
+                    gruposanguineo.toUpperCase();
+                }
                 const telefono_emergencia = req.body.emergencia;
-                const tutor_legal = req.body.tutor.toUpperCase();
+                var tutor_legal = req.body.tutor;
+                if (tutor_legal == null) {
+                    tutor_legal = "SIN INFORMACION";
+                }
+                else {
+                    tutor_legal.toUpperCase();
+                }
                 const iddoctores = req.body.iddoctores;
                 console.log(genero);
                 const idgenero = genero[0].idgenero;
