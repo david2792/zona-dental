@@ -21,7 +21,7 @@ import { FormsModule } from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { PersonaListaComponent } from './persona-lista/persona-lista.component';
 import { PacienteListaComponent } from './paciente-lista/paciente-lista.component';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,8 @@ import { PacienteListaComponent } from './paciente-lista/paciente-lista.componen
     MatIconModule,
     MatCheckboxModule,
     FormsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDatepickerModule
 
   ]
 })

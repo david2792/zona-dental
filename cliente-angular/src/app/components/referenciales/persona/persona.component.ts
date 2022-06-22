@@ -5,6 +5,9 @@ import {PacientesService} from '../../../servicios/referenciales/pacientes.servi
 import {Personas} from '../../../modelo/referenciales-personas/Personas'
 import { BuscarPersonaComponent } from '../buscador/buscar-persona/buscar-persona.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
 interface Ciudad {
   idciudad:string;
   nombre: string;
@@ -88,8 +91,11 @@ export class PersonaComponent implements OnInit {
 
 mensaje=''
 alerta=false
+bandera=0
+accion='Guardar'
+params:any
 
-  constructor( private pacienteServicio:PacientesService, private formBuilder: FormBuilder,public dialog: MatDialog) {
+  constructor(private router: Router,private activedRoute: ActivatedRoute, private pacienteServicio:PacientesService, private formBuilder: FormBuilder,public dialog: MatDialog) {
 
       this.datosPeronas = new FormGroup({
 
@@ -121,8 +127,38 @@ alerta=false
     this.BuscarProfesion()
     this.BuscarEstado()
     this.BuscarDoctor()
+
+    this.params = this.activedRoute.snapshot.params;
+    console.log(this.params['codigo']);
+    if(this.params["codigo"]){
+        this.pacienteServicio.getUnPaciente(this.params['codigo']).subscribe(res=>{
+          this.bandera=1
+          this.datosPeronas.get('correo')?.setValue(res.correo)
+          this.datosPeronas.get('nombre')?.setValue(res.nombre)
+          this.datosPeronas.get('apellido')?.setValue(res.apellido)
+          this.datosPeronas.get('cedula')?.setValue(res.ci)
+          this.datosPeronas.get('ruc')?.setValue(res.ruc)
+          this.datosPeronas.get('direccion')?.setValue(res.direccion)
+          this.datosPeronas.get('emergencia')?.setValue(res.telefono_emergencia)
+          this.datosPeronas.get('telefono')?.setValue(res.telefono)
+          this.datosPeronas.get('whatsapp')?.setValue(res.whatsapp)
+          this.datosPeronas.get('grupo_sanguineo')?.setValue(res.gruposanguineo)
+          this.datosPeronas.get('tutor')?.setValue(res.tutor_legal)
+          this.datosPeronas.get('tutor_legal')?.setValue(res.tutor_legal)
+          this.datosciudad.setValue(res.ciudad)
+          this.datosprofesion.setValue(res.profesion)
+          this.datosestado.setValue(res.estado)
+          this.datosgenero.setValue(res.genero)
+          this.datoDoctor.setValue(res.iddoctores+' - '+res.doctor)
+          var dateControl:any = document.querySelector('input[type="date"]');
+          dateControl.value=res.fecha_nacimiento;
+          this.datosPeronas.get('fecha')?.setValue(dateControl.value)
+          console.log(res.fecha_nacimiento);
+          res=''
+        })
+    }
   }
-  // buscador
+  //
 
   cargarDatosPersonas(valor:any=[]){
     this.datosPeronas.get('iddoctores')?.setValue(valor.iddoctores)
@@ -177,6 +213,36 @@ limpiar(){
 
   this.alerta=false
   this.mensaje=''
+}
+modifcarPaciente(){
+  this.datos = this.datosPeronas.value
+   this.datosPeronas.get('idciudad')?.setValue(this.datosciudad.value)
+   this.datosPeronas.get('idprofesion')?.setValue(this.datosprofesion.value)
+   this.datosPeronas.get('idgenero')?.setValue(this.datosgenero.value)
+   this.datosPeronas.get('idestado')?.setValue(this.datosestado.value)
+   this.datosPeronas.get('iddoctores')?.setValue(this.capturarcodigo(this.datoDoctor.value))
+   this.personas = this.datosPeronas.value
+   console.log(this.personas)
+   const confirmacion = window.confirm("Desea Modificar el Paciente?");
+    if(confirmacion==true){
+      this.pacienteServicio.actualizarPaciente(this.params["codigo"],this.personas).subscribe(
+        res=>{
+          console.log(res)
+          this.alerta=true;
+          this.mensaje= "REGISRO GUARDADO"
+          this.router.navigate(['/persona-listar']);
+        },
+        err=>{
+          console.log(err)
+          this.alerta=true
+          this.mensaje="OCURRIO UN ERROR"
+
+
+        } 
+     )
+     this.datosPeronas.reset();
+    this.limpiar()
+    }
 }
  crearPersona(){
    this.datos = this.datosPeronas.value

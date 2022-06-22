@@ -21,6 +21,9 @@ export class PacientesService {
     guadarPaciente(paciente:Pacientes){
       return this.http.post(`${this.rutas.API_URI}/persona/crearpaciente`,paciente)
     }
+    getUnPaciente(codigo:Number):any{
+      return this.http.get(`${this.rutas.API_URI}/persona/uno/${codigo}`);
+    }
 // referenciales
     consultaGenero(){
       return this.http.get(`${this.rutas.API_URI}/genero/listar`)
@@ -42,7 +45,9 @@ export class PacientesService {
     getPacientes(){
           return this.http.get(`${this.rutas.API_URI}/persona/listar-paciente`);
         }
-
+     actualizarPaciente(codigo:string, actualizar:Personas){
+          return this.http.put(`${this.rutas.API_URI}/persona/modificar/${codigo}`,actualizar);
+        }
 // aca comienza los servicios de doctores
 guardarDoctores(doctor:any ){
   return this.http.post(`${this.rutas.API_URI}/persona/doctor`,doctor);

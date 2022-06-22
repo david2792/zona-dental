@@ -52,6 +52,8 @@ class PersonaControl {
             try {
                 const persona = yield conn.query('SELECT * FROM vpacientes');
                 if (persona.length > 0) {
+                    const fecha = (0, moment_1.default)(persona[0].fecha_nacimiento).format('YYYY-MM-DD');
+                    persona[0].fecha_nacimiento = fecha;
                     conn.end();
                     return res.json(persona);
                 }
@@ -111,6 +113,25 @@ class PersonaControl {
         });
     }
     // fin doctores
+    listarUnPaciente(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { codigo } = req.params;
+            console.log(codigo);
+            const conn = yield (0, conexionBD_1.connect)();
+            const padron = yield conn.query('SELECT * FROM vpacientes WHERE idpersonas=?', [codigo]);
+            if (padron.length > 0) {
+                console.log(padron[0].fecha_nacimiento);
+                const fecha = (0, moment_1.default)(padron[0].fecha_nacimiento).format('YYYY-MM-DD');
+                padron[0].fecha_nacimiento = fecha;
+                conn.end();
+                return res.json(padron[0]);
+            }
+            res.status(404).json({ text: 'el docente no existe' });
+            conn.end();
+        });
+    }
+    // pacientes
+    // ***************************************
     crear(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conn = yield (0, conexionBD_1.connect)();
@@ -136,7 +157,7 @@ class PersonaControl {
                 const correo = req.body.correo;
                 const telefono = req.body.telefono;
                 const whatsapp = req.body.whatsapp;
-                const direccion = req.body.telefono;
+                const direccion = req.body.direccion;
                 var gruposanguineo = req.body.grupo_sanguineo;
                 if (gruposanguineo == null) {
                     gruposanguineo = "SIN INFORMACION";
@@ -173,22 +194,60 @@ class PersonaControl {
             }
         });
     }
-    modificar(req, res) {
+    modificarPaciente(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const conn = yield (0, conexionBD_1.connect)();
             try {
-                let datos = req.body.categorias;
-                const codigo = datos.CodigoCategoria;
-                const descripcion = datos.Descripcion.toUpperCase();
-                ;
-                const values = { descripcion };
-                console.log(values);
-                yield conn.query('UPDATE categorias SET ? WHERE CodigoCategoria = ?', [values, codigo]);
+                const { codigo } = req.params;
+                // recuperar los codigos
+                const genero = yield conn.query('SELECT idgenero FROM generos WHERE descripcion =?', req.body.idgenero);
+                const profesion = yield conn.query('SELECT idprofesion FROM profesion WHERE descripcion =?', req.body.idprofesion);
+                const estado = yield conn.query('SELECT idestadociviles FROM estadociviles WHERE descripcion =?', req.body.idestado);
+                const ciudad = yield conn.query('SELECT idciudad FROM ciudad WHERE nombre =?', req.body.idciudad);
+                // se carga los valores
+                const nombre = req.body.nombre.toUpperCase();
+                const apellido = req.body.apellido.toUpperCase();
+                const ci = req.body.cedula;
+                const ruc = req.body.ruc;
+                const nacimiento = req.body.fecha;
+                const fecha_nacimiento = (0, moment_1.default)(nacimiento).format('YYYY-MM-DD');
+                const correo = req.body.correo;
+                const telefono = req.body.telefono;
+                const whatsapp = req.body.whatsapp;
+                const direccion = req.body.direccion;
+                var gruposanguineo = req.body.grupo_sanguineo;
+                if (gruposanguineo == null) {
+                    gruposanguineo = "SIN INFORMACION";
+                }
+                else {
+                    gruposanguineo.toUpperCase();
+                }
+                const telefono_emergencia = req.body.emergencia;
+                var tutor_legal = req.body.tutor;
+                if (tutor_legal == null) {
+                    tutor_legal = "SIN INFORMACION";
+                }
+                else {
+                    tutor_legal.toUpperCase();
+                }
+                const iddoctores = req.body.iddoctores;
+                console.log(genero);
+                const idgenero = genero[0].idgenero;
+                const idprofesion = profesion[0].idprofesion;
+                const idestadociviles = estado[0].idestadociviles;
+                const idciudad = ciudad[0].idciudad;
+                // valores en un array
+                const valores = {
+                    nombre, apellido, ci, ruc, fecha_nacimiento, correo, telefono, whatsapp, direccion, idciudad, idgenero, idprofesion, idestadociviles, gruposanguineo, telefono_emergencia, tutor_legal, iddoctores
+                };
+                console.log(valores);
+                yield conn.query('UPDATE personas SET ? WHERE idpersonas = ?', [valores, codigo]);
                 conn.end();
-                res.status(200).json({ message: "la categoria fue modificada" });
+                res.status(200).json({ message: "la persona fue modificada" });
             }
             catch (error) {
                 res.status(404).json({ text: 'error al guardar los datos' });
+                console.log(error);
                 conn.end();
             }
         });

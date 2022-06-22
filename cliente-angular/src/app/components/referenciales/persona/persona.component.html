@@ -59,11 +59,12 @@
             </div>
           <div class="col-sm-3 col-12">
             <!-- segundo campo -->
-            <mat-form-field class="example-full-width" appearance="outline">
+             <mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Fecha de Nacimiento</mat-label>
               <input
               formControlName="fecha"
-              type="date" matInput placeholder="Datos del Paciente">
+              type="date"
+              matInput placeholder="Datos del Paciente">
             </mat-form-field>
             <!-- fin -->
           </div>
@@ -225,7 +226,7 @@
                    [formControl]="datoDoctor"
                    [matAutocomplete]="doctor">
                  <mat-autocomplete #doctor="matAutocomplete">
-             <mat-option *ngFor="let option of filtroDoctores | async" [value]="option.iddoctores+' - '+option.nombre">
+             <mat-option *ngFor="let option of filtroDoctores | async" [value]="option.iddoctores+' - '+option.valor  ">
                {{option.iddoctores+' - '+option.valor}}
              </mat-option>
            </mat-autocomplete>
@@ -278,8 +279,8 @@
         </mat-toolbar>
         <div class="row">
           <div class="col" id="acciones">
-            <button mat-raised-button  [disabled]="datosPeronas.invalid" (click)="crearPersona()" style=" background: rgb(143, 209, 130); color: white;">Guardar</button>
-            <button mat-raised-button style=" background: rgb(9, 9, 9); color: white;" (click)="codigoCiudad()">Modificar</button>
+            <button mat-raised-button *ngIf="bandera==0"  [disabled]="datosPeronas.invalid" (click)="crearPersona()" style=" background: rgb(143, 209, 130); color: white;">Guardar</button>
+            <button mat-raised-button *ngIf="bandera==1"  [disabled]="datosPeronas.invalid"  (click)="modifcarPaciente()" style=" background: rgb(9, 9, 9); color: white;">Modificar</button>
             <button mat-raised-button  type="reset" style=" background: #949BA3; color: white;" >Cancerlar</button>
             <button mat-raised-button [routerLink]="['/principal']" style=" background: #042953; color: white;">Volver</button>
 

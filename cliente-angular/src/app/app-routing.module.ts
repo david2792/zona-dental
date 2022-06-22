@@ -28,6 +28,11 @@ const routes: Routes = [
         canActivate:[AuthGuard]
       },
       {
+        path:'personas/editar/:codigo',
+        component:PersonaComponent,
+        canActivate:[AuthGuard]
+      },
+      {
         path:'ficha',
         component:AntecendenteMedicoComponent,
         canActivate:[AuthGuard]
