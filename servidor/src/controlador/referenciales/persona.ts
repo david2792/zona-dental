@@ -152,7 +152,7 @@ class PersonaControl
       const ci = req.body.cedula
       const ruc = req.body.ruc
       const nacimiento = req.body.fecha
-      const fecha_nacimiento = moment(nacimiento).format('DD-MM-YYYY')
+      const fecha_nacimiento =  moment(nacimiento).format('YYYY-MM-DD')
       const correo = req.body.correo
       const telefono = req.body.telefono
       const whatsapp = req.body.whatsapp
