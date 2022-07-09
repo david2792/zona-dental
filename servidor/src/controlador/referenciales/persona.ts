@@ -149,8 +149,14 @@ class PersonaControl
     // se carga los valores
       const nombre = req.body.nombre.toUpperCase()
       const apellido = req.body.apellido.toUpperCase()
-      const ci = req.body.cedula
-      const ruc = req.body.ruc
+      var ci = req.body.cedula
+      if(ci==null){
+        ci=idpersonas
+      }
+      var ruc = req.body.ruc
+      if(ruc==null){
+        ruc=idpersonas
+      }
       const nacimiento = req.body.fecha
       const fecha_nacimiento =  moment(nacimiento).format('YYYY-MM-DD')
       const correo = req.body.correo

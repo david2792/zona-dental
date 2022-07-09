@@ -101,8 +101,8 @@ params:any
 
         nombre: new FormControl(null,[Validators.required]),
         apellido:new FormControl(null,Validators.required),
-        cedula:new FormControl(null,Validators.required),
-        ruc:new FormControl(null,Validators.required),
+        cedula:new FormControl(null),
+        ruc:new FormControl(null),
         fecha:new FormControl(null,Validators.required),
         correo:new FormControl(null),
         direccion:new FormControl(null),
@@ -229,7 +229,7 @@ modifcarPaciente(){
         res=>{
           console.log(res)
           this.alerta=true;
-          this.mensaje= "REGISRO GUARDADO"
+          this.mensaje= "REGISTRO GUARDADO"
           this.router.navigate(['/persona-listar']);
         },
         err=>{
@@ -238,7 +238,7 @@ modifcarPaciente(){
           this.mensaje="OCURRIO UN ERROR"
 
 
-        } 
+        }
      )
      this.datosPeronas.reset();
     this.limpiar()
