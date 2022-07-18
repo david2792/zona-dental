@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,12 +13,14 @@ import {MatIconModule} from '@angular/material/icon';
 import { ControlPanelModule } from './components/control-panel/control-panel.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ReferencialesModule } from './components/referenciales/referenciales.module';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './servicios/login/token-interceptor.service';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -32,15 +33,17 @@ import { TokenInterceptorService } from './servicios/login/token-interceptor.ser
     ControlPanelModule,
     MatSidenavModule,
     ReferencialesModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
 
   ],
   providers: [
     AuthGuard,{
-      provide: HTTP_INTERCEPTORS,
+      provide: [HTTP_INTERCEPTORS],
       useClass: TokenInterceptorService,
-      multi:true
-    }
+      multi:true,
+    },
+
   ],
   bootstrap: [AppComponent]
 })

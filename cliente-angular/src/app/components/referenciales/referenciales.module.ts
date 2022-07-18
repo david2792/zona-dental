@@ -22,6 +22,16 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { PersonaListaComponent } from './persona-lista/persona-lista.component';
 import { PacienteListaComponent } from './paciente-lista/paciente-lista.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { HistorialMedicoComponent } from './historial-medico/historial-medico.component';
+import {MatSelectModule} from '@angular/material/select';
+import { AgendamientoComponent } from './agendamiento/agendamiento.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatNativeDateModule } from '@angular/material/core';
+import { OdontogramaComponent } from './odontograma/odontograma.component';
+import { AgendaListaComponent } from './agenda-lista/agenda-lista.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { DiasPipe } from '../../tubo/dias.pipe'
 
 @NgModule({
   declarations: [
@@ -30,9 +40,15 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     BuscarPersonaComponent,
     PersonaListaComponent,
     PacienteListaComponent,
-    DoctorComponent
+    DoctorComponent,
+    HistorialMedicoComponent,
+    AgendamientoComponent,
+    OdontogramaComponent,
+    AgendaListaComponent,
+    DiasPipe
   ],
   imports: [
+    MatNativeDateModule,
     CommonModule,
     MatCardModule,
     MatButtonModule,
@@ -50,7 +66,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatCheckboxModule,
     FormsModule,
     MatToolbarModule,
-    MatDatepickerModule
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatChipsModule,
+    MatTooltipModule
 
   ]
 })

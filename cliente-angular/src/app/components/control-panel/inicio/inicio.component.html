@@ -3,26 +3,51 @@
       <button mat-button (click)="opened=!opened"> <mat-icon>menu</mat-icon></button>
       <span id="titulo">Sistema Smart 1.0</span>
       <span class="example-spacer"></span>
-      <button mat-raised-button id="login" (click)="salirLogin()">Salir</button>
+      <button mat-button id="login" (click)="salirLogin()"><mat-icon>account_circle</mat-icon></button>
 
   </mat-toolbar-row>
   </mat-toolbar>
-  <mat-sidenav-container>
-    <mat-sidenav [(opened)]="opened" mode="side">
+  <mat-sidenav-container >
+    <mat-sidenav [(opened)]="opened">
+      <img
+      class="avatar mat-elevation-z8"
+      src="https://i1.sndcdn.com/avatars-000084718702-nv0boe-t240x240.jpg"
+    />
 
-        <button mat-menu-item>
-          <mat-icon>dialpad</mat-icon>
-          <span>Redial</span>
-        </button>
-        <button mat-menu-item disabled>
-          <mat-icon>voicemail</mat-icon>
-          <span>Check voice mail</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable alerts</span>
-        </button>
-      
+    <h5 class="name">USUARIO</h5>
+    <p class="designation">Bienvenido</p>
+
+    <mat-divider></mat-divider>
+    <button mat-button [routerLink]="['/principal']" >
+      <mat-icon>home</mat-icon>
+      <span>INICIO</span>
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-button  [matMenuTriggerFor]="menu"class="menu-button">
+      <mat-icon>person</mat-icon>
+      <span>Pacientes</span>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/personas']" >Agregar Paciente</button>
+        <button mat-menu-item [routerLink]="['/persona-listar']">Listar Paciente</button>
+      </mat-menu>
+    </button>
+    <button mat-button  [matMenuTriggerFor]="agenda"class="menu-button">
+      <mat-icon>calendar_today</mat-icon>
+      <span>Agendamiento</span>
+      <mat-menu #agenda="matMenu">
+        <button mat-menu-item [routerLink]="['/agendamiento']" >Agendar Pacientes</button>
+        <button mat-menu-item [routerLink]="['/agenda-listar']">Ver Agenda</button>
+      </mat-menu>
+    </button>
+    <button mat-button  [matMenuTriggerFor]="agenda"class="menu-button">
+      <mat-icon>persons</mat-icon>
+      <span>Profesionales</span>
+      <mat-menu #agenda="matMenu">
+        <button mat-menu-item [routerLink]="['/doctor']" >Agendar Pacientes</button>
+        <button mat-menu-item [routerLink]="['/doctor-listar']">Ver Agenda</button>
+      </mat-menu>
+    </button>
     </mat-sidenav>
     <mat-sidenav-content id="fondo" >
       <router-outlet>

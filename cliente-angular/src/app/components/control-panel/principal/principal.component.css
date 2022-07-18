@@ -29,6 +29,11 @@ mat-icon{
   margin: auto;
   padding-top: 10px;
 }
+#odontograma{
+  background-color: rgba(7, 27, 105, 0.864);
+  border-radius: 10px;
+  margin: 5%;
+}
 mat-card-title{
   color: aliceblue;
 }

@@ -45,14 +45,13 @@ class PersonaControl
     const persona =  await conn.query('SELECT * FROM vpacientes');
     if(persona.length > 0)
     {
-      const fecha =moment(persona[0].fecha_nacimiento).format('YYYY-MM-DD')
-      persona[0].fecha_nacimiento = fecha
       conn.end()
       return res.json(persona);
     }
   } 
   catch (error) 
   {
+    console.log(error)
     res.status(404).json({text:'El paciente no existe'});
     conn.end()
   }
@@ -159,17 +158,31 @@ class PersonaControl
       }
       const nacimiento = req.body.fecha
       const fecha_nacimiento =  moment(nacimiento).format('YYYY-MM-DD')
-      const correo = req.body.correo
+      var correo = req.body.correo
+      if(correo==null){
+        correo="SIN INFORMACION"
+      }
       const telefono = req.body.telefono
-      const whatsapp = req.body.whatsapp
-      const direccion = req.body.direccion
+      var whatsapp = req.body.whatsapp
+      if(whatsapp==null){
+        whatsapp=telefono
+      }
+      var direccion = req.body.direccion
+      if(direccion==null){
+        direccion="SIN INFORMACION"
+      }else{
+          direccion.toUpperCase()
+      }
       var gruposanguineo = req.body.grupo_sanguineo
       if(gruposanguineo==null){
         gruposanguineo="SIN INFORMACION"
       }else{
-        gruposanguineo.toUpperCase()
+       gruposanguineo.toUpperCase()
       }
-      const telefono_emergencia= req.body.emergencia
+      var telefono_emergencia= req.body.emergencia
+      if(telefono_emergencia==null){
+        telefono_emergencia=telefono
+      }
       var tutor_legal = req.body.tutor
       if(tutor_legal==null){
         tutor_legal="SIN INFORMACION"

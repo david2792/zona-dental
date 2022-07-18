@@ -1,0 +1,25 @@
+mat-label
+{
+  font-size: 15px;
+}
+mat-form-field
+{
+  height: auto;
+  width: 100%;
+  padding: 1px;
+}
+#acciones{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+
+}
+button{
+  margin: 10px;
+  height: 50px;
+  width: 150px;
+}
+textarea{
+  font-size: 30px;
+  height: 150px;
+}

@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PrincipalComponent } from './principal/principal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [
     InicioComponent,
@@ -29,7 +30,8 @@ import {MatMenuModule} from '@angular/material/menu';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDividerModule
 
   ],
   exports:[InicioComponent]

@@ -18,7 +18,7 @@ import generoRutas from './rutas/referenciales/ruta-genero'
 import estado_Civil_Rutas from './rutas/referenciales/ruta-civil'
 import profesionRutas from './rutas/referenciales/ruta-profesion'
 import personaRutas from './rutas/referenciales/rutas-persona'
-
+import agendamientoRutas from './rutas/referenciales/ruta-agenda'
 
 class Server
 {
@@ -54,7 +54,8 @@ class Server
         this.app.use('/api/genero',generoRutas);
         this.app.use('/api/estadocivil',estado_Civil_Rutas);
         this.app.use('/api/profesion',profesionRutas);
-
+// AGENDAMIENTO
+        this.app.use('/api/agenda',agendamientoRutas)
         this.app.use('/api/persona',personaRutas);
 
         

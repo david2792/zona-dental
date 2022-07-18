@@ -1,0 +1,45 @@
+#centro{
+  position:absolute;
+  left: 50%;
+}
+#izquierda{
+  position:absolute;
+  top: 50%;
+}
+#derecha{
+
+  justify-content: top;
+}
+.cuadrado
+{
+  width: 100%;
+  height: 100%;
+  background: #aaa;
+  position: fixed;
+}
+
+#color{
+    border: red 5px solid;
+    width: 500px;
+    height: 500px;
+    position: relative;
+    border-radius: 50%;
+}
+#superior{
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  border-radius: 50%;
+}
+#derecho{
+  position: absolute;
+  left: 0%;
+  top: 50%;
+
+
+}
+#diente1{
+  border-radius: 55px;
+}
+
+

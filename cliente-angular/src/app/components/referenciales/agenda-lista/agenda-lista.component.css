@@ -1,0 +1,21 @@
+.mat-form-field{
+  height: auto;
+  width: 100%;
+  padding: 1px;
+}
+table
+{
+  height: auto;
+  width: 100%;
+  padding: 1px;
+}
+th{
+  color: rgb(251, 245, 245);
+  background-color: #343A40;
+  font-size: 16px;
+  text-align: center;
+}
+td{
+  font-size: 18px;
+}
+

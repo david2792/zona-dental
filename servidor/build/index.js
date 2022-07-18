@@ -21,6 +21,7 @@ const ruta_genero_1 = __importDefault(require("./rutas/referenciales/ruta-genero
 const ruta_civil_1 = __importDefault(require("./rutas/referenciales/ruta-civil"));
 const ruta_profesion_1 = __importDefault(require("./rutas/referenciales/ruta-profesion"));
 const rutas_persona_1 = __importDefault(require("./rutas/referenciales/rutas-persona"));
+const ruta_agenda_1 = __importDefault(require("./rutas/referenciales/ruta-agenda"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -49,6 +50,8 @@ class Server {
         this.app.use('/api/genero', ruta_genero_1.default);
         this.app.use('/api/estadocivil', ruta_civil_1.default);
         this.app.use('/api/profesion', ruta_profesion_1.default);
+        // AGENDAMIENTO
+        this.app.use('/api/agenda', ruta_agenda_1.default);
         this.app.use('/api/persona', rutas_persona_1.default);
     }
     start() {

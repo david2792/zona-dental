@@ -9,6 +9,10 @@ import { PacienteListaComponent } from './components/referenciales/paciente-list
 import { DoctorComponent } from './components/referenciales/doctor/doctor.component';
 import { PersonaListaComponent } from './components/referenciales/persona-lista/persona-lista.component';
 import { PersonaComponent } from './components/referenciales/persona/persona.component';
+import { HistorialMedicoComponent } from './components/referenciales/historial-medico/historial-medico.component';
+import { AgendamientoComponent } from './components/referenciales/agendamiento/agendamiento.component';
+import { OdontogramaComponent } from './components/referenciales/odontograma/odontograma.component';
+import { AgendaListaComponent } from './components/referenciales/agenda-lista/agenda-lista.component';
 
 const routes: Routes = [
 
@@ -51,8 +55,28 @@ const routes: Routes = [
       path:'doctor-listar',
       component:PacienteListaComponent,
       canActivate:[AuthGuard]
-     }
+     },
+     {
+      path:'ficha_medica',
+      component:HistorialMedicoComponent,
+      canActivate:[AuthGuard]
+     },
+     {
+      path:'agendamiento',
+      component:AgendamientoComponent,
+      canActivate:[AuthGuard]
+     },
+     {
+      path:'agenda-listar',
+      component:AgendaListaComponent,
+      canActivate:[AuthGuard]
+     },
 
+     {
+      path:'odontograma',
+      component:OdontogramaComponent,
+      canActivate:[AuthGuard]
+     }
 
     ]
   },

@@ -1,0 +1,83 @@
+<div class="container">
+  <form [formGroup]="datoFormulario"  autocomplete="off">
+    <mat-card style="border-radius: 20px;">
+      <mat-card-title id="acciones" style="border-radius: 10px; padding: 10px; background: #343A40; color: white;">
+        Agendaminto de Pacientes</mat-card-title>
+      <mat-card-subtitle>Permite ingresar los datos del agendamiento</mat-card-subtitle>
+      <mat-card-content>
+        <div class="row">
+          <div>
+            <mat-form-field id="fondo"  class="example-full-width" appearance="fill">
+              <mat-label>Pacientes</mat-label>
+               <input
+               type="text"
+               placeholder="Introducir nombre del Paciente"
+               matInput
+               [formControl]="datoPaciente"
+               [matAutocomplete]="pacientes">
+             <mat-autocomplete #pacientes="matAutocomplete">
+         <mat-option *ngFor="let option of filtroPacientes | async" [value]="option.idpersonas+' - '+option.nombre+' '+option.apellido  ">
+           {{option.idpersonas+' - '+option.nombre+' '+option.apellido}}
+         </mat-option>
+       </mat-autocomplete>
+           </mat-form-field>
+            <button mat-raised-button style=" background: rgb(9, 9, 9); color: white;">Agregar Paciente</button>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Fecha de Consulta</mat-label>
+              <input  formControlName="fecha" matInput [matDatepicker]="picker">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #picker></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="this.datoFormulario.get('fecha') && this.datoFormulario.get('fecha')?.invalid && this.datoFormulario.get('fecha')?.touched" class="alert alert-danger" >
+              Ingrese la Fecha
+            </div>
+          </div>
+          <div class="col-6">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Hora de Consulta</mat-label>
+              <input  formControlName="hora" matInput type="time">
+            </mat-form-field>
+            <div *ngIf="this.datoFormulario.get('hora') && this.datoFormulario.get('hora')?.invalid && this.datoFormulario.get('hora')?.touched" class="alert alert-danger" >
+              Ingrese la Hora
+            </div>
+          </div>
+          <div class="col-12">
+            <!-- sexto campo -->
+            <mat-form-field id="fondo"  class="example-full-width" appearance="fill">
+              <mat-label>Odontologo/a Tratante</mat-label>
+              <input type="text" placeholder="Introducir nombre del Odontologo/a" matInput [formControl]="datoDoctor"
+                [matAutocomplete]="doctor">
+              <mat-autocomplete #doctor="matAutocomplete">
+                <mat-option *ngFor="let option of filtroDoctores | async"
+                  [value]="option.iddoctores+' - '+option.valor  ">
+                  {{option.iddoctores+' - '+option.valor}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Observación</mat-label>
+              <input  formControlName="observacion" matInput placeholder="Nombre y Apellido ">
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="alerta==true" (click)="limpiar()" class="col-12 alert alert-secondary" role="alert">
+         <span>{{mensaje}}</span>
+        </div>
+        <div class="row">
+          <div class="col-12" id="acciones">
+            <button id="guardar" mat-raised-button (click)="guardar()" style=" background: rgb(33, 102, 19); color: white;">Guardar</button>
+            <button id="guardar" mat-raised-button  type="reset"
+              style=" background: rgb(52, 110, 108); color: white;">Cancelar</button>
+            <button id="guardar" mat-raised-button style=" background: rgb(11, 11, 11); color: white;" [routerLink]="['/agenda-listar']">Ver
+              Agenda</button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

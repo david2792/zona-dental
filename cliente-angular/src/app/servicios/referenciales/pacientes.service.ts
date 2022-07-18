@@ -12,7 +12,6 @@ import { AccesoService } from '../acceso.service';
 export class PacientesService {
   valor:any='valor'
 
-  // API_URI = 'http://localhost:3000/api'
 
   constructor(private http: HttpClient, private rutas:AccesoService) {}
       consutlaCiudad(){
@@ -55,5 +54,17 @@ guardarDoctores(doctor:any ){
 getDoctores(){
   return this.http.get(`${this.rutas.API_URI}/persona/doctor/listar`);
 }
+
+// AGENDAMIENTO
+guardarAgenda(agenda:any){
+  return this.http.post(`${this.rutas.API_URI}/agenda/crear`,agenda);
+}
+verAgenda(fecha:any){
+  return this.http.post(`${this.rutas.API_URI}/agenda/ver`,fecha);
 }
 
+anularAgenda(datos:any){
+  return this.http.put(`${this.rutas.API_URI}/agenda/anular`,datos);
+}
+
+}

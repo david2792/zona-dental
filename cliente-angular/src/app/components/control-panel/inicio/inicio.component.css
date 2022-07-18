@@ -1,36 +1,93 @@
-
-
-
-mat-sidenav-container
-{
-  height: calc(205vh - 115vh);
+mat-toolbar {
+  background: #222323;
+  color: white;
 }
 
-mat-sidenav
-{
- width: 200px;
- background-color: rgb(77, 77, 77);
+mat-sidenav {
+  margin: 16px;
+  width: 200px;
+  border-right: none;
+  background: #222323;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
 }
-h4
+
+.content {
+  height: calc(100vh - 130px);
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+
+  padding: 16px;
+
+  overflow: auto;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+
+.menu-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+
+}
+.mat-icon {
+  margin-right: 8px;
+}
+
+.avatar {
+  margin-top: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.name {
+  margin-top: 2px;
+  font-weight: normal;
+}
+
+.designation {
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color: lightgrey;
+}
+
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+h5
 {
  color: brown;
  text-align: center;
- font-size: 40px;
+ font-size: 20px;
 }
 
 .example-spacer {
   flex: 1 1 auto;
 }
 span{
-  color: aliceblue;
+
   font-family: "Trebuchet MS", Verdana, sans-serif;
+  color: white;
 }
 mat-toolbar{
-  background-color: #343A40;
+  background: #222323;
+  color: white;
 
 }
 #login{
-  background: rgb(40, 158, 16);
+  background: #222323;
   color: aliceblue;
   font-size: 20px;
 }
@@ -45,5 +102,6 @@ mat-toolbar{
   background-repeat: no-repeat;
   background-position: 50%;
 }
+
 
 

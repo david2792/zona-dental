@@ -107,7 +107,7 @@ params:any
         correo:new FormControl(null),
         direccion:new FormControl(null),
         telefono:new FormControl(null,Validators.required),
-        whatsapp:new FormControl(null,Validators.required),
+        whatsapp:new FormControl(null),
         emergencia:new FormControl(),
         grupo_sanguineo:new FormControl(),
         tutor:new FormControl(),
@@ -241,7 +241,7 @@ modifcarPaciente(){
         }
      )
      this.datosPeronas.reset();
-    this.limpiar()
+     this.limpiar()
     }
 }
  crearPersona(){
@@ -268,8 +268,8 @@ modifcarPaciente(){
 
         }
      )
-     this.datosPeronas.reset();
-    this.limpiar()
+    // this.datosPeronas.reset();
+   // this.limpiar()
     }
  }
 
