@@ -40,12 +40,19 @@
         <button mat-menu-item [routerLink]="['/agenda-listar']">Ver Agenda</button>
       </mat-menu>
     </button>
-    <button mat-button  [matMenuTriggerFor]="agenda"class="menu-button">
+    <button mat-button  [matMenuTriggerFor]="profe"class="menu-button">
       <mat-icon>persons</mat-icon>
       <span>Profesionales</span>
-      <mat-menu #agenda="matMenu">
-        <button mat-menu-item [routerLink]="['/doctor']" >Agendar Pacientes</button>
-        <button mat-menu-item [routerLink]="['/doctor-listar']">Ver Agenda</button>
+      <mat-menu #profe="matMenu">
+        <button mat-menu-item [routerLink]="['/doctor']" >Agendar Profesionales</button>
+        <button mat-menu-item [routerLink]="['/doctor-listar']">Lista de Profesionales</button>
+      </mat-menu>
+    </button>
+    <button mat-button  [matMenuTriggerFor]="ficha"class="menu-button">
+      <mat-icon>subject</mat-icon>
+      <span>Fichas</span>
+      <mat-menu #ficha="matMenu">
+        <button mat-menu-item [routerLink]="['/ficha_medica']" >Agregar Ficha</button>
       </mat-menu>
     </button>
     </mat-sidenav>

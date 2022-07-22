@@ -32,7 +32,7 @@ import { AgendaListaComponent } from './agenda-lista/agenda-lista.component';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DiasPipe } from '../../tubo/dias.pipe'
-
+import {MatStepperModule} from '@angular/material/stepper';
 @NgModule({
   declarations: [
     AntecendenteMedicoComponent,
@@ -70,7 +70,8 @@ import { DiasPipe } from '../../tubo/dias.pipe'
     MatButtonToggleModule,
     MatDatepickerModule,
     MatChipsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatStepperModule
 
   ]
 })

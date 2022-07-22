@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-historial-medico',
@@ -7,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistorialMedicoComponent implements OnInit {
 no:any = "NO"
-  constructor() { }
+
+firstFormGroup = this._formBuilder.group({
+  firstCtrl: ['', Validators.required],
+});
+secondFormGroup = this._formBuilder.group({
+  secondCtrl: ['', Validators.required],
+});
+tercFormGroup = this._formBuilder.group({
+  tercdCtrl: ['', Validators.required],
+});
+
+
+
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
