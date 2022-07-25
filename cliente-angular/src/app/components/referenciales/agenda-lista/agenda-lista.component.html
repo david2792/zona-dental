@@ -40,15 +40,11 @@
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="codigo">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Codigo</th>
-    <td  mat-cell *matCellDef="let element" > {{element.idagendamientos}} </td>
+    <td  mat-cell *matCellDef="let element" > {{element.codigo}} </td>
   </ng-container>
   <ng-container matColumnDef="hora">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Hora </th>
     <td  mat-cell *matCellDef="let element" > {{element.hora}} </td>
-  </ng-container>
-  <ng-container matColumnDef="fecha">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha </th>
-    <td  mat-cell *matCellDef="let element" > {{element.fecha | date}} <mat-chip color="accent" selected>{{element.fecha | dias}}  </mat-chip> </td>
   </ng-container>
   <ng-container matColumnDef="paciente">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Paciente </th>
@@ -65,8 +61,8 @@
   <ng-container matColumnDef="accion">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Cancelar</th>
     <td  mat-cell *matCellDef="let element">
-      <button mat-button [routerLink]="['/agendamiento']"  matTooltip="Cancela el Agendamiento"><mat-icon>add</mat-icon></button>
-      <button mat-button (click)="anularAgendamiento(element.idagendamientos)"  matTooltip="Agregar Agendamiento"><mat-icon>restore_from_trash</mat-icon></button>
+      <button mat-button [routerLink]="['/agendamiento']"  matTooltip="Agregar Agendamiento"><mat-icon>add</mat-icon></button>
+      <button mat-button (click)="anularAgendamiento(element.codigo)"  matTooltip=" Cancela el Agendamiento"><mat-icon>restore_from_trash</mat-icon></button>
 
     </td>
 

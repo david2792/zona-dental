@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { debounceTime, map, Observable, startWith } from 'rxjs';
 import { PacientesService } from 'src/app/servicios/referenciales/pacientes.service';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-import { IfStmt } from '@angular/compiler';
+import { identifierName, IfStmt } from '@angular/compiler';
 
 interface Doctor{
   iddoctores:string;
@@ -18,7 +18,7 @@ interface Doctor{
 
 export interface PeriodicElement {
   codigo:string;
-  hora: string;
+  hora:string;
   fecha:string;
   paciente: string;
   telefono:string;
@@ -43,7 +43,7 @@ export class AgendaListaComponent implements OnInit {
   datoDoctor = new FormControl()
   agenda:any=[]
 
-  displayedColumns: string[] = ['codigo','hora','fecha','paciente','telefono','observacion','accion'];
+  displayedColumns: string[] = ['codigo','hora','paciente','telefono','observacion','accion'];
   //dataSource: MatTableDataSource<any>;
   dataSource:any
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -53,26 +53,27 @@ export class AgendaListaComponent implements OnInit {
 
 
   ELEMENT_DATA: PeriodicElement[] = [
-    {codigo:'',hora: '07:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '07:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '08:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '08:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '09:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '09:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '10:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '10:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '11:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '12:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '12:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '13:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '13:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '14:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '14:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '15:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '16:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '17:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '17:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
-    {codigo:'',hora: '18:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '07:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '07:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '08:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '08:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '09:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '09:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '10:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '10:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '11:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '11:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '12:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '12:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '13:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '13:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '14:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '14:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '15:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '16:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '17:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '17:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
+    {codigo:'',hora: '18:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:""},
 
   ];
 
@@ -117,12 +118,61 @@ export class AgendaListaComponent implements OnInit {
       this.servicios.anularAgenda(this.datos).subscribe(
         res=>{
          console.log(res)
-         this.listar()
         },
         err=> console.log(err)
        )
     }
+     for(let i in this.ELEMENT_DATA){
+          this.ELEMENT_DATA[i].codigo=''
+          this.ELEMENT_DATA[i].paciente='LIBRE'
+          this.ELEMENT_DATA[i].observacion=''
+          this.ELEMENT_DATA[i].telefono=''
+         }
+        this.limpiar()
+  }
+  limpiar(){
+    this.datoFormulario.get('doctor')?.setValue(this.capturarcodigo(this.datoDoctor.value))
+    this.datoFormulario.get('fecha')
+    this.datos = this.datoFormulario.value
+    this.servicios.verAgenda(this.datos).subscribe((res:any)=>{
+        this.agenda = res
+       console.log(res)
+        if(this.agenda.length>0){
+          for(let i in this.ELEMENT_DATA){
+            for(let j in this.agenda){
+              if(this.ELEMENT_DATA[i].hora == this.agenda[j].hora){
+                console.log(this.ELEMENT_DATA[i].hora +" y "+ this.agenda[j].hora)
+                this.ELEMENT_DATA[i].paciente = this.agenda[j].paciente
+                this.ELEMENT_DATA[i].observacion = this.agenda[j].observacion
+                this.ELEMENT_DATA[i].telefono = this.agenda[j].telefono
+                this.ELEMENT_DATA[i].codigo = this.agenda[j].idagendamientos
+              }
+              // else{
+              //   this.ELEMENT_DATA[j].codigo=''
+              //   this.ELEMENT_DATA[j].paciente='LIBRE'
+              //   this.ELEMENT_DATA[j].observacion=''
+              //   this.ELEMENT_DATA[j].telefono=''
+              // }
+          }
+        }
+        }else{
+          console.log("no hay nada")
+          for(let i in this.ELEMENT_DATA){
+            this.ELEMENT_DATA[i].codigo=''
+            this.ELEMENT_DATA[i].paciente=''
+            this.ELEMENT_DATA[i].observacion='LIBRE'
+            this.ELEMENT_DATA[i].telefono=''
 
+          }
+        }
+        this.dataSource = new MatTableDataSource(this.ELEMENT_DATA)
+        this.dataSource.paginator = this.paginator
+
+    //  this.dataSource = this.ELEMENT_DATA
+
+      },
+      err=> console.log(err)
+    )
   }
   inicio(){
    this.dataSource=new MatTableDataSource(this.ELEMENT_DATA);
@@ -131,28 +181,40 @@ export class AgendaListaComponent implements OnInit {
     this.datoFormulario.get('doctor')?.setValue(this.capturarcodigo(this.datoDoctor.value))
     this.datoFormulario.get('fecha')
     this.datos = this.datoFormulario.value
-    console.log(this.datos)
     this.servicios.verAgenda(this.datos).subscribe((res:any)=>{
         this.agenda = res
-        console.log(this.agenda)
-     //   this.dataSource = new MatTableDataSource(res)
-      // this.dataSource.paginator = this.paginator
-     //   this.dataSource = this.ELEMENT_DATA
-      // this.dataSource = this.agenda
-      for(let i in this.ELEMENT_DATA){
-          for(let j in this.agenda){
-            if(this.ELEMENT_DATA[i].hora == this.agenda[j].hora){
-              this.ELEMENT_DATA[i].paciente = this.agenda[j].paciente
-              this.ELEMENT_DATA[i].fecha = this.agenda[j].fecha
-              this.ELEMENT_DATA[i].observacion = this.agenda[j].observacion
-              this.ELEMENT_DATA[i].telefono = this.agenda[j].telefono
-              this.ELEMENT_DATA[i].codigo = this.agenda[j].codigo
-
-            }
+       console.log(res)
+        if(this.agenda.length>0){
+          for(let i in this.ELEMENT_DATA){
+            for(let j in this.agenda){
+              if(this.ELEMENT_DATA[i].hora == this.agenda[j].hora){
+                console.log(this.ELEMENT_DATA[i].hora +" y "+ this.agenda[j].hora)
+                this.ELEMENT_DATA[i].paciente = this.agenda[j].paciente
+                this.ELEMENT_DATA[i].observacion = this.agenda[j].observacion
+                this.ELEMENT_DATA[i].telefono = this.agenda[j].telefono
+                this.ELEMENT_DATA[i].codigo = this.agenda[j].idagendamientos
+              }
+              // else{
+              //   this.ELEMENT_DATA[j].codigo=''
+              //   this.ELEMENT_DATA[j].paciente='LIBRE'
+              //   this.ELEMENT_DATA[j].observacion=''
+              //   this.ELEMENT_DATA[j].telefono=''
+              // }
+          }
         }
-      }
-      this.dataSource = new MatTableDataSource(this.ELEMENT_DATA)
-      this.dataSource.paginator = this.paginator
+        }else{
+          console.log("no hay nada")
+          for(let i in this.ELEMENT_DATA){
+            this.ELEMENT_DATA[i].codigo=''
+            this.ELEMENT_DATA[i].paciente=''
+            this.ELEMENT_DATA[i].observacion='LIBRE'
+            this.ELEMENT_DATA[i].telefono=''
+
+          }
+        }
+        this.dataSource = new MatTableDataSource(this.ELEMENT_DATA)
+        this.dataSource.paginator = this.paginator
+
     //  this.dataSource = this.ELEMENT_DATA
 
       },

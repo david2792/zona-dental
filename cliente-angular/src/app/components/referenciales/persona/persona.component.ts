@@ -268,8 +268,8 @@ modifcarPaciente(){
 
         }
      )
-    // this.datosPeronas.reset();
-   // this.limpiar()
+    this.datosPeronas.reset();
+   this.limpiar()
     }
  }
 
