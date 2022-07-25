@@ -7,12 +7,22 @@ import { MatTableDataSource } from '@angular/material/table';
 import { debounceTime, map, Observable, startWith } from 'rxjs';
 import { PacientesService } from 'src/app/servicios/referenciales/pacientes.service';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { IfStmt } from '@angular/compiler';
 
 interface Doctor{
   iddoctores:string;
   nombre: string;
   apellido: string;
   valor:string;
+}
+
+export interface PeriodicElement {
+  codigo:string;
+  hora: string;
+  fecha:string;
+  paciente: string;
+  telefono:string;
+  observacion: string;
 }
 
 @Component({
@@ -34,11 +44,39 @@ export class AgendaListaComponent implements OnInit {
   agenda:any=[]
 
   displayedColumns: string[] = ['codigo','hora','fecha','paciente','telefono','observacion','accion'];
-  dataSource: MatTableDataSource<any>;
+  //dataSource: MatTableDataSource<any>;
+  dataSource:any
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   datoFormulario: FormGroup;
   datos:any=[]
+
+
+  ELEMENT_DATA: PeriodicElement[] = [
+    {codigo:'',hora: '07:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '07:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '08:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '08:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '09:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '09:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '10:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '10:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '11:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '12:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '12:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '13:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '13:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '14:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '14:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '15:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '16:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '17:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '17:30:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+    {codigo:'',hora: '18:00:00',fecha:'',paciente: 'LIBRE',telefono:'', observacion:"SIN OBSERVACION"},
+
+  ];
+
+
   constructor(public servicios: PacientesService,date: DateAdapter<Date>, private _adapter: DateAdapter<any>,
     @Inject(MAT_DATE_LOCALE) private _locale: string) {
 
@@ -65,6 +103,7 @@ export class AgendaListaComponent implements OnInit {
    // this.listar()
     this.BuscarDoctor()
     this.french()
+    this.inicio()
   }
   capturarcodigo(texto:string) {
     const cod = texto.split("-")[0];
@@ -85,6 +124,9 @@ export class AgendaListaComponent implements OnInit {
     }
 
   }
+  inicio(){
+   this.dataSource=new MatTableDataSource(this.ELEMENT_DATA);
+  }
   listar(){
     this.datoFormulario.get('doctor')?.setValue(this.capturarcodigo(this.datoDoctor.value))
     this.datoFormulario.get('fecha')
@@ -93,9 +135,25 @@ export class AgendaListaComponent implements OnInit {
     this.servicios.verAgenda(this.datos).subscribe((res:any)=>{
         this.agenda = res
         console.log(this.agenda)
-        this.dataSource = new MatTableDataSource(res)
-        this.dataSource.paginator = this.paginator
-  //       this.dataSource = this.persona
+     //   this.dataSource = new MatTableDataSource(res)
+      // this.dataSource.paginator = this.paginator
+     //   this.dataSource = this.ELEMENT_DATA
+      // this.dataSource = this.agenda
+      for(let i in this.ELEMENT_DATA){
+          for(let j in this.agenda){
+            if(this.ELEMENT_DATA[i].hora == this.agenda[j].hora){
+              this.ELEMENT_DATA[i].paciente = this.agenda[j].paciente
+              this.ELEMENT_DATA[i].fecha = this.agenda[j].fecha
+              this.ELEMENT_DATA[i].observacion = this.agenda[j].observacion
+              this.ELEMENT_DATA[i].telefono = this.agenda[j].telefono
+              this.ELEMENT_DATA[i].codigo = this.agenda[j].codigo
+
+            }
+        }
+      }
+      this.dataSource = new MatTableDataSource(this.ELEMENT_DATA)
+      this.dataSource.paginator = this.paginator
+    //  this.dataSource = this.ELEMENT_DATA
 
       },
       err=> console.log(err)
@@ -104,12 +162,15 @@ export class AgendaListaComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toUpperCase();
-    console.log(this.dataSource)
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
   // buscador de profesionales
   BuscarDoctor(){
     this.servicios.getDoctores().subscribe(
