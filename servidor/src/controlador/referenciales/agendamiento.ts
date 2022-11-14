@@ -20,8 +20,7 @@ class AgendamientoControl
       conn.end()
       return res.json(padron);
     }else{
-     
-      return res.json(padron);
+          return res.json(padron);
     }
   } catch (error) {
     console.log(error)

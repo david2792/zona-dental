@@ -45,7 +45,7 @@ class UsuarioControlador {
                     descripcion: descripcion
                     // ANY DATA
                 };
-                console.log("bienvenido");
+                console.log(tokenData);
                 // var token = jwt.sign(users:users, SECRET, { expiresIn: '1h' , algorithm: 'RS256' })
                 var token = jsonwebtoken_1.default.sign(tokenData, 'Secret Password', {
                     expiresIn: "8h" // expires in 24 hours

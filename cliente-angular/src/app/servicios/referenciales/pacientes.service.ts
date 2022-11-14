@@ -11,9 +11,15 @@ import { AccesoService } from '../acceso.service';
 
 export class PacientesService {
   valor:any='valor'
-
+ datosUsuario:any='hola'
 
   constructor(private http: HttpClient, private rutas:AccesoService) {}
+  guardarTokenData(tokenData:any){
+    this.datosUsuario= tokenData
+  }
+  mostarTokenData(){
+   return this.datosUsuario
+  }
       consutlaCiudad(){
       return this.http.get(`${this.rutas.API_URI}/ciudad/listar`)
     }

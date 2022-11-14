@@ -1,6 +1,7 @@
 mat-toolbar {
   background: #222323;
   color: white;
+  height: 5%;
 }
 
 mat-sidenav {

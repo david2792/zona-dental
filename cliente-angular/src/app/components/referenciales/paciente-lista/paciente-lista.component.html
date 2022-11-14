@@ -4,8 +4,10 @@
 
   <mat-form-field appearance="standard">
     <mat-label>Buscador</mat-label>
+   
     <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
   </mat-form-field>
+
   <div class="mat-elevation-z8">
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="codigo">
@@ -41,7 +43,7 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Acciones {{input.value}}  </th>
     <td mat-cell *matCellDef="let element"> <button [routerLink]="['/doctor']"  mat-raised-button style=" background: rgb(9, 9, 9); color: white;" >Agregar</button>
     <button mat-raised-button style=" background: rgb(36, 94, 13); color: white;">Modificar</button>
-   
+
     </td>
   </ng-container>
 
